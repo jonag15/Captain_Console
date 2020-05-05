@@ -2,12 +2,19 @@
     background-color: aqua;
 }
 
-/*.navbar {
-    min-height: 100px;
-}*/
+.navbar {
+    background-color: darkslateblue;
+}
+
+#logo_search {
+    background-color: lightgoldenrodyellow;
+    padding-bottom: 0px;
+}
 
 #logo {
-    max-height: 7%;
-    max-width: 7%;
-    padding-left: 10px;
+    max-height: 9%;
+    max-width: 9%;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
