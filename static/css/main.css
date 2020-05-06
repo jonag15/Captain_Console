@@ -6,14 +6,36 @@
     background-color: #257a9f;
 }
 
-.nav-link, .navbar-brand {
-    color: white;
+.nav-link {
+    font-size: 1.25rem;
+}
+
+.product:hover, .navbar-brand:hover, .right_nav:hover {
+    color: darkblue !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.product {
+    margin-left: 10px;
 }
 
 #logo_search {
     background-color: #cbd4c3;
     padding-bottom: 0px;
     padding-top: 0px;
+}
+
+#order_list {
+    width: 70%;
+    margin-left: 0;
+    margin-top: 20px;
+}
+
+.order_box {
+    border: 15px;
 }
 
 #logo {
@@ -27,6 +49,20 @@
 
 #logo_link {
     max-width: 10%;
+}
+
+.gen_pic {
+    height: 50px;
+    width: 100%;
+}
+
+.order_row {
+    height: 50px;
+}
+
+.order_card {
+    height: 50px;
+    background-color: lightgray;
 }
 
 footer {
