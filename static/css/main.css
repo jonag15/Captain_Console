@@ -18,3 +18,11 @@
     padding-top: 10px;
     padding-bottom: 5px;
 }
+footer {
+    display: flex;
+    flex-direction: row;
+    padding: 10%;
+
+    margin-right: 12%;
+    margin-left: 12%;
+}
