@@ -30,10 +30,39 @@
 }
 
 footer {
+    background-color: #257a9f;
     display: flex;
     flex-direction: row;
     padding: 10%;
+}
 
-    margin-right: 12%;
-    margin-left: 12%;
+.text-footer {
+    color: white;
+}
+
+#searchbar {
+    width: 50%;
+}
+
+#searchform {
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+@media screen and (max-width: 540px) {
+#footer {
+    flex-direction: column;
+}
+#footer_info {
+    max-height: 25%;
+}
+}
+
+@media screen and (max-width: 580px) {
+#logo, #logo_link {
+    display: none;
+}
 }
