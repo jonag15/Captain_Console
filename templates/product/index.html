@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-    
-    <h2>Product view</h2>
 
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+{#            {% include icons/placeholder.svg width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top" text="Thumbnail" %}#}
+              <div class="card-body">
+                <div class="productInfo">
+{#                    <h6 class="card-text productInfo">Nafn</h6>#}
+{#                   <h6 class="card-text productInfo">Verð</h6>#}
+                    <h6 class="card-text productInfo">{{ product.name }}</h6>
+                    <h6 class="card-text productInfo">{{ product.price }}kr</h6>
+                </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary btn-order">Setja í körfu</button>
+                    <a class="btn btn-primary btn-sm btn-outline-secondary btn-info" href="{% url 'product_info' %}" role="button">Upplýsingar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+
+      </div>
+    </div>
+  </div>
 {% endblock %}
