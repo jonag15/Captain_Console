@@ -52,3 +52,22 @@ footer {
     background-color: #257a9f;
     color: white;
 }
+
+.main-info {
+    display: inline;
+    margin: 0px;
+}
+
+.card > .card-text{
+    margin: 1rem;
+    padding: 0px;
+    text-align: center;
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.card  {
+    margin: 1rem;
+    padding: 0px;
+
+}
