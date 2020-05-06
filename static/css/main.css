@@ -3,18 +3,28 @@
 }
 
 .navbar {
-    background-color: darkslateblue;
+    background-color: #257a9f;
+}
+
+.nav-link, .navbar-brand {
+    color: white;
 }
 
 #logo_search {
-    background-color: lightgoldenrodyellow;
+    background-color: #cbd4c3;
     padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 #logo {
-    max-height: 9%;
-    max-width: 9%;
-    padding-left: 15px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-left: 0px;
     padding-top: 10px;
-    padding-bottom: 5px;
+    border: 0;
+    /*padding-bottom: 5px;*/
+}
+
+#logo_link {
+    max-width: 10%;
 }
