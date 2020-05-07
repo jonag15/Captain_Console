@@ -10,6 +10,7 @@
     font-size: 1.25rem;
 }
 
+
 .product:hover, .navbar-brand:hover, .right_nav:hover {
     color: darkblue !important;
 }
@@ -127,9 +128,31 @@ footer {
     /*Card er upplýsingar um vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
-
 }
 
+.sortedBy {
+    padding: 8px;
+}
+
+#dropdownMenuButton {
+    /* Dropdown for sorted by on productside*/
+    background-color: #257a9f;
+    color: white;
+}
+
+span {
+    display: inline-block;
+}
+
+.nav-link {
+    color: black;
+}
+
+#plusIcon {
+    padding-left: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 580px) {
     #logo, #logo_link {
