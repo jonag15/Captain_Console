@@ -103,11 +103,13 @@ footer {
 
 
 .main-info {
+    /*Er öll upplýsingasíðan á upplýsingasíðu um vöru*/
     display: inline;
     margin: 0px;
 }
 
 .card > .card-text{
+    /*Card-text er textin sjálfur um upplýsingar á vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
     text-align: center;
@@ -116,6 +118,7 @@ footer {
 }
 
 .card  {
+    /*Card er upplýsingar um vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
 
