@@ -10,6 +10,7 @@
     font-size: 1.25rem;
 }
 
+
 .product:hover, .navbar-brand:hover, .right_nav:hover {
     color: darkblue !important;
 }
@@ -28,9 +29,28 @@
     padding-top: 0px;
 }
 
-.table-responsive {
-    width: 100%;
+.order_count {
+  margin-left: 5px;
 }
+.counter {
+  width: 45px;
+  border-radius: 0px !important;
+  text-align: center;
+}
+.up_count {
+  margin-bottom: 10px;
+  margin-left: -4px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.down_count {
+  margin-bottom: 10px;
+  margin-right: -4px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+
 
 .end_of_table {
     max-width: 100px;
@@ -127,9 +147,31 @@ footer {
     /*Card er upplýsingar um vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
-
 }
 
+.sortedBy {
+    padding: 8px;
+}
+
+#dropdownMenuButton {
+    /* Dropdown for sorted by on productside*/
+    background-color: #257a9f;
+    color: white;
+}
+
+span {
+    display: inline-block;
+}
+
+.nav-link {
+    color: black;
+}
+
+#plusIcon {
+    padding-left: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 580px) {
     #logo, #logo_link {

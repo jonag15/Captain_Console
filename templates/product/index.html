@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="sortedBy">
-    <button type="button" class="btn btn-sm btn-info"><ion-icon class="btn-icon mr-2 funnel-outline"></ion-icon>Raða eftir..</button>
-{#        <button type="button" class="btn btn-sm btn-outline-secondary funnel-outline">Raða eftir..</button>#}
 
-    </div>
+<div class="dropdown sortedBy">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Raða eftir</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Verði</a>
+    <a class="dropdown-item" href="#">Nafni</a>
 
+  </div>
+</div>
+
+<span>
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -34,4 +40,33 @@
       </div>
     </div>
   </div>
+</span>
+<span>
+    <div class="container categories">
+    <div class="row justify-content-start">
+
+        <ul class="nav flex-column">
+
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+            <a class="nav-link" href="#">Tölvuleikir<i class="fas fa-plus" id="plusIcon"></i></a>
+          </li>
+
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+            <a class="nav-link" href="#">Leikjatölvur<i class="fas fa-plus" id="plusIcon"></i></a>
+          </li>
+
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+            <a class="nav-link" href="#">Aukahlutir<i class="fas fa-plus" id="plusIcon"></i></a>
+          </li>
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+            <a class="nav-link" href="#">Varahlutir<i class="fas fa-plus" id="plusIcon"></i></a>
+          </li>
+        </ul>
+    </div>
+    </div>
+</span>
 {% endblock %}
