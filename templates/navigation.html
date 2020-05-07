@@ -34,7 +34,18 @@
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link right_nav" href="{% url 'user_index' %}">Innskrá <span class="sr-only">(current)</span></a>
+            <div class="dropdown nav-item active">
+          <button class="btn-info btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Innskrá
+          </button>
+                <div class="dropdown-menu nav-item" aria-labelledby="dropdownMenuButton">
+                <ul><a class="right_nav" href="{% url 'user_index' %}">Innskrá <span class="sr-only">(current)</span></a></ul>
+                <ul><a class="right_nav" href="{% url 'search_history' %}">Leitarsaga<span class="sr-only">(current)</span></a></ul>
+    </div>
+    </div>
+
+
+
         </li>
     </ul>
 

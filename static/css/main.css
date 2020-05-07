@@ -151,6 +151,7 @@ footer {
 
 .sortedBy {
     padding: 8px;
+    margin-left: 20%;
 }
 
 #dropdownMenuButton {
@@ -160,7 +161,7 @@ footer {
 }
 
 span {
-    display: inline-block;
+    display: inline-grid;
 }
 
 .nav-link {

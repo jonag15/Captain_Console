@@ -1,28 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="dropdown sortedBy">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Raða eftir</button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Verði</a>
-    <a class="dropdown-item" href="#">Nafni</a>
+    <a class="dropdown-item" href="#">Verð</a>
+    <a class="dropdown-item" href="#">Nafn</a>
 
   </div>
 </div>
 
-<span>
-  <div class="album py-5 bg-light">
+
+<span class="col-md-2 align-top">
+    <div class="container categories row">
+    <div class="row justify-content-start">
+
+        <ul class="nav flex-column">
+            <div class="dropdown">
+                <li class="catacories"><h4>Flokkar</h4></li>
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+              <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input customCheck1">
+              <label class="custom-control-label" for="customCheck1">Tölvuleikir</label>
+            </div>
+{#            <a class="nav-link" href="#">Tölvuleikir<i class="fas fa-plus" id="plusIcon"></i></a>#}
+          </li>
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+                <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input customCheck1" >
+              <label class="custom-control-label" for="customCheck1">Leikjatölvur</label>
+            </div>
+          </li>
+
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+                <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input customCheck1" >
+              <label class="custom-control-label" for="customCheck1">Aukahlutir</label>
+            </div>
+          </li>
+          <li class="nav-item">
+              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1 customCheck1">Varahlutir</label>
+            </div>
+          </li>
+        </ul>
+    </div>
+    </div>
+</span>
+
+<span class="col-md-9">
+  <div class="album py-5 bg-light row">
     <div class="container">
       <div class="row">
         {% for product in products %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+        <div class="col-md-6">
+          <div class="card mb-3 shadow-sm">
 {#            {% include icons/placeholder.svg width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top" text="Thumbnail" %}#}
               <div class="card-body">
                 <div class="productInfo">
-{#                    <h6 class="card-text productInfo">Nafn</h6>#}
-{#                   <h6 class="card-text productInfo">Verð</h6>#}
+                    <img src="{% static "images/PlayStation4.PNG" %}" class="card-img-top" alt="...">
                     <h6 class="card-text productInfo">{{ product.name }}</h6>
                     <h6 class="card-text productInfo">{{ product.price }}kr</h6>
                 </div>
@@ -41,32 +84,5 @@
     </div>
   </div>
 </span>
-<span>
-    <div class="container categories">
-    <div class="row justify-content-start">
 
-        <ul class="nav flex-column">
-
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-            <a class="nav-link" href="#">Tölvuleikir<i class="fas fa-plus" id="plusIcon"></i></a>
-          </li>
-
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-            <a class="nav-link" href="#">Leikjatölvur<i class="fas fa-plus" id="plusIcon"></i></a>
-          </li>
-
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-            <a class="nav-link" href="#">Aukahlutir<i class="fas fa-plus" id="plusIcon"></i></a>
-          </li>
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-            <a class="nav-link" href="#">Varahlutir<i class="fas fa-plus" id="plusIcon"></i></a>
-          </li>
-        </ul>
-    </div>
-    </div>
-</span>
 {% endblock %}
