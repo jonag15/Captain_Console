@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="user">
+
+      <form class="form-signin">
+
+      <h1 class="h3 mb-3 font-weight-normal">Nýskráning</h1>
+
+      <label for="inputUsername" class="sr-only">Email address</label>
+      <input type="username" id="inputUsername" class="form-control" placeholder="Notendanafn" required="" autofocus=""><br>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Netfang" required="" autofocus=""><br>
+      <label for="inputPasswordFirst" class="sr-only">Password</label>
+      <input type="password" id="inputPasswordFirst" class="form-control" placeholder="Lykilorð" required=""><br>
+      <label for="inputPasswordLast" class="sr-only">Password</label>
+      <input type="password" id="inputPasswordLast" class="form-control" placeholder="Endurtaktu lykilorð" required=""><br>
+
+
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Vista</button>
+
+      <p class="mt-5 mb-3 text-muted">© 2020</p>
+    </form>
+    </div>
+
+{% endblock %}
