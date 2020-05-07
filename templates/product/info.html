@@ -2,8 +2,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="main-info">
-
+<div class="row">
+    <div class="col-sm-3">
    <div class="card" style="width: 18rem;"> {#style="width: 18rem;">#}
         <img src="{% static "images/PlayStation4.PNG" %}" class="card-img-top" alt="...">
        <div class="btn justify-content-between align-items-center">
@@ -16,9 +16,17 @@
             <h6 class="productInfo">Nafn</h6>
             <h6 class="productInfo">Verð</h6>
     </div>
-        <a class="btn btn-info" href="#" role="button">Setja í körfu</a>
+    </div>
+   </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3 align-self-end">
+        <a class="btn btn-info info_btn" href="#" role="button">Setja í körfu</a>
     </div>
 
+
+    </div>
+<div class="row">
+    <div class="col-sm-12">
     <div class="card">
   <div class="card-header">
     <h5>Upplýsingar um vöru</h5>
@@ -29,5 +37,5 @@
 </div>
 
     </div>
-</div>
+
 {% endblock %}

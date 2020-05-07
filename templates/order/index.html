@@ -26,7 +26,7 @@
                     <div class="p-2">
                       <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
                       <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic d-block">Flokkar: Flokkur</span>
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic order_cat">Flokkar: Flokkur</span>
                       </div>
                     </div>
                   </th>
@@ -34,9 +34,9 @@
                   <td class="border-0 align-middle">
 
                         <div class='order_count'>
-                          <button class='down_count btn btn-info' title='Down'><i class='fa fa-minus'></i></button>
+                          <button class='down_count btn btn-secondary btn-sm' title='Down'><i class='fa fa-minus'></i></button>
                           <input class='counter' type="text" placeholder="value..." value='0' />
-                          <button class='up_count btn btn-info' title='Up'><i class='fa fa-plus'></i></button>
+                          <button class='up_count btn btn-secondary btn-sm' title='Up'><i class='fa fa-plus'></i></button>
                         </div>
 
                   </td>
@@ -47,65 +47,37 @@
                     <div class="p-2">
                       <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
                       <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic">Flokkar: Flokkur</span>
+                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic order_cat">Flokkar: Flokkur</span>
                       </div>
                     </div>
                   </th>
                   <td class="align-middle"><strong>1990kr</strong></td>
-                  <td class="align-middle"><strong>2</strong></td>
+                  <td class="align-middle">
+                      <div class='order_count'>
+                          <button class='down_count btn btn-secondary btn-sm' title='Down'><i class='fa fa-minus'></i></button>
+                          <input class='counter' type="text" placeholder="value..." value='0' />
+                          <button class='up_count btn btn-secondary btn-sm' title='Up'><i class='fa fa-plus'></i></button>
+                        </div>
+                  </td>
                   <td class="align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-
-
-
-
-
-
-
-
-    {% comment %}<div class="container " id="order_list">
+        <div class="container">
             <div class="row">
-                <div class="col-md-6 order_row">
-                    <div class="container order_card order_box">
-                        <div class="row order_card">
-                            <div class="col-md-3">
-                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
-                            </div>
-                            <div class="col-md-3">
-                                <p>Nafn vöru</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Fjöldi</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Verð</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2"><h4>Heildarverð:</h4></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2">
+                    <a role="button" class="btn btn-primary btn-lg order_btn" href="{% url 'product_index' %}">Til baka</a>
                 </div>
-                <div class="col-md-6 order_row">
-                     <div class="container order_card order_box">
-                        <div class="row order_card">
-                            <div class="col-md-3">
-                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
-                            </div>
-                            <div class="col-md-3">
-                                <p>Nafn vöru</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Fjöldi</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p>Verð</p>
-                            </div>
-                        </div>
-                     </div>
+                <div class="col-sm-2">
+                    <a role="button" class="btn btn-success btn-lg order_btn" href="#">Klára pöntun</a>
                 </div>
+
+            </div>
         </div>
-    </div>{% endcomment %}
+    </div>
 
 {% endblock %}

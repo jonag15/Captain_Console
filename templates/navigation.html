@@ -33,21 +33,15 @@
             <a class="nav-link right_nav" href="{% url 'order_index' %}">Karfa <span class="sr-only">(current)</span></a>
         </li>
 
-        <li class="nav-item active">
-            <div class="dropdown nav-item active">
-          <button class="btn-info btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Innskrá
-          </button>
-                <div class="dropdown-menu nav-item" aria-labelledby="dropdownMenuButton">
-                <ul><a class="right_nav" href="{% url 'user_index' %}">Innskrá <span class="sr-only">(current)</span></a></ul>
-                <ul><a class="right_nav" href="{% url 'search_history' %}">Leitarsaga<span class="sr-only">(current)</span></a></ul>
-    </div>
-    </div>
-
-
-
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle right_nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Innskrá
+        </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'user_index' %}">Innskrá</a>
+                <a class="dropdown-item" href="{% url 'search_history' %}">Leitarsaga</a>
+            </div>
         </li>
     </ul>
-
-  </div>
+    </div>
 </nav>
