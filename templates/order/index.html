@@ -1,6 +1,46 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    
-    <h2>Order view</h2>
+    <h1>Vörur í körfu:</h1>
+    <div class="container " id="order_list">
+            <div class="row">
+                <div class="col-md-6 order_row">
+                    <div class="container order_card order_box">
+                        <div class="row order_card">
+                            <div class="col-md-3">
+                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
+                            </div>
+                            <div class="col-md-3">
+                                <p>Nafn vöru</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Fjöldi</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Verð</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 order_row">
+                     <div class="container order_card order_box">
+                        <div class="row order_card">
+                            <div class="col-md-3">
+                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
+                            </div>
+                            <div class="col-md-3">
+                                <p>Nafn vöru</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Fjöldi</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Verð</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+        </div>
+    </div>
 
 {% endblock %}
