@@ -78,12 +78,26 @@ WSGI_APPLICATION = 'cap_console.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'arpydhhw',
+        'USER': 'arpydhhw',
+        'PASSWORD': 'WWq0roS9_zdOf0t_ku5CPUBJSlFiYodD',
+        'HOST': 'balarama.db.elephantsql.com',
+        'PORT': '5432'
 }
+}
+
+
+#Default stillingar fyrir gagnagrunn:
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 
 # Password validation

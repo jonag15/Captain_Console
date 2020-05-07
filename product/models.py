@@ -1,3 +1,45 @@
 from django.db import models
+from user.models import User
 
 # Create your models here.
+#Þessi model hér verða möppuð inn í gagnagrunnstöflu.
+#Nafnið á klasanum verður heitið á gagnagrunnstöflunni.
+
+
+class ProductType(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class ProductStatus(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.FloatField()
+    description = models.CharField(max_length=999, blank=True)
+    category = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT)
+    quantity = models.IntegerField()
+    on_sale = models.BooleanField()
+
+    def __str__(self):
+        return self.name
+
+
+class ProductImage(models.Model):
+    image = models.CharField(max_length=999)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+
+class SearchHistory(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    search_date = models.DateField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+
+
+
+
+
