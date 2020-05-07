@@ -10,6 +10,7 @@
     font-size: 1.25rem;
 }
 
+
 .product:hover, .navbar-brand:hover, .right_nav:hover {
     color: darkblue !important;
 }
@@ -128,11 +129,13 @@ footer {
 
 
 .main-info {
+    /*Er öll upplýsingasíðan á upplýsingasíðu um vöru*/
     display: inline;
     margin: 0px;
 }
 
 .card > .card-text{
+    /*Card-text er textin sjálfur um upplýsingar á vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
     text-align: center;
@@ -141,11 +144,34 @@ footer {
 }
 
 .card  {
+    /*Card er upplýsingar um vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
     padding: 0px;
-
 }
 
+.sortedBy {
+    padding: 8px;
+}
+
+#dropdownMenuButton {
+    /* Dropdown for sorted by on productside*/
+    background-color: #257a9f;
+    color: white;
+}
+
+span {
+    display: inline-block;
+}
+
+.nav-link {
+    color: black;
+}
+
+#plusIcon {
+    padding-left: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 580px) {
     #logo, #logo_link {
@@ -162,3 +188,35 @@ footer {
 }
 }
 
+
+
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
