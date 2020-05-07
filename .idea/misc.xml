@@ -4,6 +4,7 @@
     <option name="languageLevel" value="ES6" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (cap_console)" project-jdk-type="Python SDK" />
 =======
 
@@ -12,4 +13,9 @@
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (Captain_Consolejon)" project-jdk-type="Python SDK" />
 
 >>>>>>> capcon/breytingarFyrirDB
+=======
+
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (cap_console)" project-jdk-type="Python SDK" />
+
+>>>>>>> 5a707b61754ed2b6908299d8e5dbebab1571dfc5
 </project>
