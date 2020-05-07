@@ -107,6 +107,27 @@ footer {
     color: white;
 }
 
+
+.main-info {
+    display: inline;
+    margin: 0px;
+}
+
+.card > .card-text{
+    margin: 1rem;
+    padding: 0px;
+    text-align: center;
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.card  {
+    margin: 1rem;
+    padding: 0px;
+
+}
+
+
 @media screen and (max-width: 580px) {
     #logo, #logo_link {
         display: none;
@@ -121,3 +142,4 @@ footer {
     max-height: 25%;
 }
 }
+
