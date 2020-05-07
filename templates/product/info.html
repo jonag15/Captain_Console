@@ -1,3 +1,34 @@
+
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<div class="main-info">
+
+   <div class="card" style="width: 18rem;"> {#style="width: 18rem;">#}
+        <img src="{% static "images/PlayStation4.PNG" %}" class="card-img-top" alt="...">
+       <div class="btn justify-content-between align-items-center">
+            <a class="btn btn-info" href="#" role="button">Fyrri mynd</a>
+            <a class="btn btn-info" href="#" role="button">Næsta mynd</a>
+       </div>
+
+    <div class="card-body">
+            <h6 class="productInfo">Nafn</h6>
+            <h6 class="productInfo">Verð</h6>
+    </div>
+        <a class="btn btn-info" href="#" role="button">Setja í körfu</a>
+    </div>
+
+
+
+    <div class="card">
+  <div class="card-header">
+    <h5>Upplýsingar um vöru</h5>
+  </div>
+  <div class="card-body">
+      <p>Blablablabla</p>
+  </div>
+</div>
+
+    </div>
+</div>
 {% endblock %}

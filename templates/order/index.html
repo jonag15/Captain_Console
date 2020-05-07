@@ -1,6 +1,103 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    
-    <h2>Order view</h2>
+    <h1>Vörur í körfu:</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Vörur</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Verð</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Fjöldi</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light end_of_table_box">
+                    <div class="py-2 text-uppercase end_of_table">Fjarlægja</div>
+                  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th scope="row" class="border-0">
+                    <div class="p-2">
+                      <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic d-block">Flokkar: Flokkur</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="border-0 align-middle"><strong>2500kr</strong></td>
+                  <td class="border-0 align-middle"><strong>3</strong></td>
+                  <td class="border-0 align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <div class="p-2">
+                      <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic">Flokkar: Flokkur</span>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="align-middle"><strong>1990kr</strong></td>
+                  <td class="align-middle"><strong>2</strong></td>
+                  <td class="align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+    {% comment %}<div class="container " id="order_list">
+            <div class="row">
+                <div class="col-md-6 order_row">
+                    <div class="container order_card order_box">
+                        <div class="row order_card">
+                            <div class="col-md-3">
+                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
+                            </div>
+                            <div class="col-md-3">
+                                <p>Nafn vöru</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Fjöldi</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Verð</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 order_row">
+                     <div class="container order_card order_box">
+                        <div class="row order_card">
+                            <div class="col-md-3">
+                                <img class="gen_pic" src="{% static "images/mynd.png" %}" alt="Generic picture">
+                            </div>
+                            <div class="col-md-3">
+                                <p>Nafn vöru</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Fjöldi</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Verð</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+        </div>
+    </div>{% endcomment %}
 
 {% endblock %}
