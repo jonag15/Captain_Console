@@ -1,6 +1,3 @@
-.user {
-    background-color: aqua;
-}
 
 .navbar {
     background-color: #257a9f;
@@ -212,7 +209,9 @@ span {
 }
 
 
-
+.btn-primary{
+    background-color: #257a9f;
+}
 
 .form-signin {
   width: 100%;
