@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="postgres@balarama.db.elephantsql.com" uuid="044127b1-2bea-4dd7-92ef-1e08a4d0cc2b">
-=======
-    <data-source source="LOCAL" name="postgres@balarama.db.elephantsql.com" uuid="81ec2ec2-6f67-4605-bfe5-dfc99dd2c747">
->>>>>>> e1daaa0c699dbfaafde2c7484b1b6a29437113dc
+    <data-source source="LOCAL" name="Captain Console DB" uuid="790c4eab-eb6d-47f3-b262-3aa07a3a3dad">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://balarama.db.elephantsql.com:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://balarama.db.elephantsql.com:5432/arpydhhw</jdbc-url>
     </data-source>
   </component>
 </project>
