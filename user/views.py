@@ -35,7 +35,9 @@ def change_payment(request):
 
 
 def register(request):
-    if request == 'POST':
+    print("Hér er POST")
+    if request.method == 'POST':
+        print("Eftir if post")
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
