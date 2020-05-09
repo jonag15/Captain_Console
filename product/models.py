@@ -9,6 +9,18 @@ from user.models import User
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
 
+#
+class ProductSubTypes(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class ProductManufacturer(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class ProductAgeLimit(models.Model):
+    name = models.CharField(max_length=255)
+#
 
 class ProductStatus(models.Model):
     name = models.CharField(max_length=255)
@@ -16,12 +28,16 @@ class ProductStatus(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    price = models.FloatField()
+    price = models.IntegerField()
     description = models.CharField(max_length=999, blank=True)
     category = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT)
     quantity = models.IntegerField()
     on_sale = models.BooleanField()
+    sub_type = models.ForeignKey(ProductSubTypes, on_delete=models.CASCADE)        #viðbót
+    age_limit = models.ForeignKey(ProductAgeLimit, on_delete=models.CASCADE)        #viðbót
+    manufacturer = models.ForeignKey(ProductManufacturer, on_delete=models.CASCADE)        #viðbót
+
 
     def __str__(self):
         return self.name
