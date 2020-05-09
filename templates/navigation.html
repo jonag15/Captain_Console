@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark" >
+<nav class="navbar fixed-top navbar-expand-md navbar-dark" >
     <div>
         <a class="navbar-brand" href="{% url 'home_index' %}">Captain Console</a>
     </div>
@@ -38,7 +38,14 @@
           Innskrá
         </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'user_index' %}">Innskrá</a>
+                {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'logout' %}">Útskrá</a>
+                {% else %}
+                   <a class="dropdown-item" href="{% url 'register' %}">Nýskrá</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Innskrá</a>
+                {% endif %}
+
+
                 <a class="dropdown-item" href="{% url 'search_history' %}">Leitarsaga</a>
             </div>
         </li>

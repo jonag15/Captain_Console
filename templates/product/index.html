@@ -6,13 +6,13 @@
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Raða eftir</button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Verð</a>
-    <a class="dropdown-item" href="#">Nafn</a>
+    <a class="dropdown-item" href="{% url 'product_index_price' %}">Verð</a>
+    <a class="dropdown-item" href="{% url 'product_index_name' %}">Nafn</a>
 
   </div>
 </div>
 
-
+{# Flokkar  #}
 <span class="col-md-2 align-top">
     <div class="container categories row">
     <div class="row justify-content-start">
@@ -26,7 +26,6 @@
               <input type="checkbox" class="custom-control-input customCheck1">
               <label class="custom-control-label" for="customCheck1">Tölvuleikir</label>
             </div>
-{#            <a class="nav-link" href="#">Tölvuleikir<i class="fas fa-plus" id="plusIcon"></i></a>#}
           </li>
           <li class="nav-item">
               <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
@@ -50,6 +49,7 @@
               <label class="custom-control-label" for="customCheck1 customCheck1">Varahlutir</label>
             </div>
           </li>
+            </div>
         </ul>
     </div>
     </div>
@@ -58,31 +58,23 @@
 <span class="col-md-9">
   <div class="album py-5 bg-light row">
     <div class="container">
+
       <div class="row">
         {% for product in products %}
-        <div class="col-md-6">
-          <div class="card mb-3 shadow-sm">
-{#            {% include icons/placeholder.svg width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top" text="Thumbnail" %}#}
-              <div class="card-body">
-                <div class="productInfo">
-                    <img src="{% static "images/PlayStation4.PNG" %}" class="card-img-top" alt="...">
-                    <h6 class="card-text productInfo">{{ product.name }}</h6>
-                    <h6 class="card-text productInfo">{{ product.price }}kr</h6>
-                </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary btn-order">Setja í körfu</button>
-                    <a class="btn btn-primary btn-sm btn-outline-secondary btn-info" href="{% url 'product_info' %}" role="button">Upplýsingar</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    {% endfor %}
+      <div class="col-md-6">
 
+            {% include 'product/single_product.html' with product=product %}
+
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+            </div>
       </div>
     </div>
   </div>
+
 </span>
 
 {% endblock %}
