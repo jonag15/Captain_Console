@@ -28,7 +28,7 @@ class ProductStatus(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    price = models.FloatField()
+    price = models.IntegerField()
     description = models.CharField(max_length=999, blank=True)
     category = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     status = models.ForeignKey(ProductStatus, on_delete=models.PROTECT)
