@@ -6,7 +6,7 @@ from django import forms
 class ProductCreateForm(ModelForm):
     #image = forms.CharField(widgets=forms.TextInput(attrs={'class': 'form-control'}))
     #image = widgets.TextInput(attrs={'class': 'form-control'})
-    image = forms.ImageField(required=True)
+    image = forms.CharField(required=True)
 
     class Meta:
         model = Product
@@ -28,8 +28,8 @@ class ProductCreateForm(ModelForm):
 
 class ProductUpdateForm(ModelForm):
     #image = forms.CharField(widgets=forms.TextInput(attrs={'class': 'form-control'}))
-    #image = widgets.TextInput(attrs={'class': 'form-control'})
-    image = forms.ImageField(required=True)
+    #image = forms.TextInput(attrs={'class': 'form-control'})
+    image = forms.CharField(required=True)
 
     class Meta:
         model = Product

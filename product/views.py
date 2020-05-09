@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.http import JsonResponse
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product
 from product.models import ProductImage
@@ -8,6 +8,10 @@ from product.models import ProductImage
 
 # Create your views here.
 def index(request):
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        product = list(Product.objects.filter(name__icontains=search_filter).values)
+        return JsonResponse({'data': product})
     context = {'products': Product.objects.all()}
     return render(request, 'product/index.html', context)
 
