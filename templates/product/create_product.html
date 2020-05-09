@@ -3,7 +3,7 @@
 {% block content %}
     <form class="form form-horizontal" action="{% url 'create_new_product' %}" method="post">
     {{ form }}
-{#        {{%csrf_token%}}#}
+        {%csrf_token%}
 
     <input type="submit" value="Create" class="btn btn-primary btn-info" style="clear:both; margin: 10px 0px">
     </form>
