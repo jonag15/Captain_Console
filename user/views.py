@@ -32,10 +32,9 @@ def user_area(request):
 def change_payment(request):
     return render(request, 'user/change_payment.html', context={ 'greidsluuppl': greidsluuppl})
 
-<<<<<<< HEAD
+
 def admin_option(request):
     return render(request, 'user/admin_view.html')
-=======
 
 
 def register(request):
@@ -57,4 +56,3 @@ def login(request):
 def logout(request):
 
     return
->>>>>>> 9d25d39ad7c5544e636a8fc0d834b165ad0796db
