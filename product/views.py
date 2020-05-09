@@ -53,7 +53,7 @@ def create_new_product(request):
         print(1)
     else:
         form = ProductCreateForm()
-        # TODO: Instance new ProductCreateForm()
+
     return render(request, 'product/create_product.html', {
         'form': form
     })
