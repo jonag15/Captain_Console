@@ -36,7 +36,11 @@ def get_product_by_id(request, id):
        'product': get_object_or_404(Product, pk=id)
    })
 
-#SÃ¶lusÃ­Ã°a fyrir hverja vÃ¶ru...
+def get_all_games(request):
+    context = {'products': Product.objects.all()}
+    return
+
+#Get all products
 def get_products(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/single_product.html', context)

@@ -7,5 +7,6 @@ urlpatterns = [
     path('new_user/', views.new_user, name = 'new_user'),
     path('user_area/', views.user_area, name = 'user_area'),
     path('user_area/change_payment/', views.change_payment, name = 'change_payment'),
+    path('admin-option/', views.admin_option, name='admin_option')
 ]
 

@@ -24,3 +24,6 @@ def user_area(request):
 
 def change_payment(request):
     return render(request, 'user/change_payment.html', context={ 'greidsluuppl': greidsluuppl})
+
+def admin_option(request):
+    return render(request, 'user/admin_view.html')
