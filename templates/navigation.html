@@ -33,22 +33,30 @@
             <a class="nav-link right_nav" href="{% url 'order_index' %}">Karfa <span class="sr-only">(current)</span></a>
         </li>
 
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle right_nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Innskrá
-        </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle right_nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Útskrá
+            </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'logout' %}">Útskrá</a>
-                {% else %}
-                   <a class="dropdown-item" href="{% url 'register' %}">Nýskrá</a>
+                    <a class="dropdown-item" href="{% url 'search_history' %}">Leitarsaga</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle right_nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Innskrá
+            </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'register' %}">Nýskrá</a>
                     <a class="dropdown-item" href="{% url 'login' %}">Innskrá</a>
-                {% endif %}
+                    <a class="dropdown-item" href="{% url 'search_history' %}">Leitarsaga</a>
+                </div>
+            </li>
+        {% endif %}
 
-
-                <a class="dropdown-item" href="{% url 'search_history' %}">Leitarsaga</a>
-            </div>
-        </li>
     </ul>
     </div>
 </nav>

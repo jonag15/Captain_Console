@@ -47,8 +47,8 @@ def register(request):
     })
 
 def login(request):
+    return render(request, 'user/login.html')
 
-    return
 
 def logout(request):
 
