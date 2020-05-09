@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="form form-horizontal" action="{% url 'create_new_product' %}" method="post">
+        {# csrf_token used for security so not someone can post on this url #}
+        {{csrf_token}}
+        {{ form }}
+    <input type="submit" value="Create" class="btn btn-primary btn-info" style="clear:both; margin: 10px 0px">
+    </form>
+{% endblock %}

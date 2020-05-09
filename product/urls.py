@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:id>', views.get_product_by_id, name = 'product_description'),
     path('<int:id>', views.get_products, name='product_info'),
     path('games/', views.get_all_games, name = 'product_games'),
+    path('create-product', views.create_new_product, name='create_new_product'),
 ]

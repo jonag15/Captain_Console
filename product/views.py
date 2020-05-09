@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+
+from product.forms.product_form import ProductCreateForm
 from product.models import Product
 from product.models import ProductImage
+
 
 # products = [
 #     {'name': 'TÃ¶lvuleikur 1', 'price': 1000},
@@ -44,3 +47,13 @@ def get_all_games(request):
 def get_products(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/single_product.html', context)
+
+def create_new_product(request):
+    if request.method == 'POST':
+        print(1)
+    else:
+        form = ProductCreateForm()
+        # TODO: Instance new ProductCreateForm()
+    return render(request, 'product/create_product.html', {
+        'form': form
+    })
