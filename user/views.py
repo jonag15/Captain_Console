@@ -1,14 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from user.forms.personal_info import PersonalInfo
+from user.models import Profile
+from user.forms.profile_form import ProfileForm
+from django.contrib.auth.models import User
 
-# Test gögn, fer í ruslið                                                                       MUNA AÐ HENDA
-drasl = [
-    { 'name': 'Unnar Sigurðsson', 'email': 'bla@bla.is', 'phoneNumber': '7713712', 'address': 'Sólheimar 30', 'zipCode': '104', 'country': 'Ísland', 'picture': 'images/mynd.png'},
-]
-
-greidsluuppl = [
-    { 'cardnum': '123123', 'exp': '03/23', 'cvc': '123'}
-]
 
 # Create your views here.
 def index(request):
@@ -18,13 +14,7 @@ def search_history(request):
     return render(request, 'user/search_history.html')
 
 def new_user(request):
-    if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('user_index')
-    if request.method == 'GET':
-        return render(request, 'user/new_user.html')
+    return render(request, 'user/new_user.html')
 
 def user_area(request):
     return render(request, 'user/user_area.html', context={ 'drasl': drasl })
@@ -49,10 +39,30 @@ def register(request):
         'form': UserCreationForm()
     })
 
-def login(request):
-    return render(request, 'user/login.html')
+
+def picture(request):
+    profile = Profile.objects.filter(user=request.user).first()
+    if request.method == 'POST':
+        print("post")
+        form = ProfileForm(instance=profile, data=request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('/')
+    return render(request, 'user/picture.html', {
+        'form': ProfileForm(instance=profile)
+    })
 
 
-def logout(request):
-
-    return
+def profile(request):
+    postform = User.objects.filter(id=request.user.id).first()
+    if request.method == 'POST':
+        print("post!!!")
+        form = PersonalInfo(instance=postform, data=request.POST)
+        if form.is_valid():
+            postform.save()
+            return redirect('/user/profile')
+    return render(request, 'user/profile.html', {
+        'form': PersonalInfo(instance=postform)
+    })
