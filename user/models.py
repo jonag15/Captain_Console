@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User as AuthUser
 
 
 # Create your models here.
@@ -56,7 +57,8 @@ class Admin(models.Model):
 
 
 class Profile(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(AuthUser, on_delete=models.CASCADE)
+    profile_image = models.CharField(max_length=9999)
 
 
 
