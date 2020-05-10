@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+    <br><br><br>
+    <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row"><br>
+      <div class="col-lg-4">
+
+          <!-- Hér þarf að ákveða hvernig við meðhöndlum myndir -->
+        <img class="mb-3" src="" alt="" width="150" height="200" style="border-radius: 50px"><br>
+
+        <!-- <button class="btn btn-sm btn-primary" type="submit">Breyta mynd</button><br> <br> -->
+
+        <form>
+          <div class="form-group">
+              <img src="{{ user.profile.profile_image }}" class="profile-image">
+              <a class="btn btn-secondary" href="{% url 'picture' %}" role="button">Breyta mynd</a>
+          </div>
+        </form>
+
+        <button class="btn btn-sm btn-primary" type="submit">Til baka</button>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <h4>Persónuupplýsingar</h4><br>
+
+
+        <form class="form form-horizontal" method="POST">
+            {% csrf_token %}
+            {{ form }} <br>
+            <a class="btn btn-secondary" href="{% url 'profile' %}" role="button">Til baka</a>
+            <input type="submit" class="btn btn-primary" value="Vista">
+        </form>
+
+
+        <p><a class="btn btn-secondary" href="#" role="button">Breyta upplýsingum</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <h4>Greiðsluupplýsingar</h4><br>
+          <p>Eitthvað bleble placeholder fyrir eitthvað sniðuugt</p>
+
+
+
+        <a class="btn btn-secondary" href="{% url 'change_payment' %}" role="button">Breyta upplýsingum</a>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+{% endblock %}

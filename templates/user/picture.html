@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Profile</h1>
+    <form class="form form-horizontal" method="POST">
+        {% csrf_token %}
+        {{ form }} <br>
+        <a class="btn btn-secondary" href="{% url 'profile' %}" role="button">Til baka</a>
+        <input type="submit" class="btn btn-primary" value="Vista">
+    </form>
+
+{% endblock %}

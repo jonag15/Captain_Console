@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
+
+
+
     <br><br><br>
     <div class="container marketing">
 
@@ -24,15 +29,7 @@
       <div class="col-lg-4">
         <h4>Persónuupplýsingar</h4><br>
 
-                            <!-- ÞARF AÐ SKOÐA ÞEETTA BETUR -->
-        {% for drasl in drasl  %}
-            <p>{{ drasl.name }}</p>
-            <p>{{ drasl.email }}</p>
-            <p>{{ drasl.phoneNumber }}</p>
-            <p>{{ drasl.address }}</p>
-            <p>{{ drasl.zipCode }}</p>
-            <p>{{ drasl.country }}</p>
-        {% endfor %}
+
 
         <p><a class="btn btn-secondary" href="#" role="button">Breyta upplýsingum</a></p>
       </div><!-- /.col-lg-4 -->
