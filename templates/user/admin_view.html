@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="admin-options">
+    <h3>Veldu aðgerð:</h3>
+    <div class="options" >
+
+        <a class="btn btn-lg btn-outline-secondary btn-info" id="button-option" style="width: 20%;display: grid;" href="{% url 'create_new_product' %}" role="button">Bæta við vöru</a>
+        <a class="btn btn-lg btn-outline-secondary btn-info" id="button-option" style="width: 20%;display: grid;" href="{% url 'choose_product_to_update'%}" role="button">Breyta vöru</a>
+        <a class="btn btn-lg btn-outline-secondary btn-info" id="button-option" style="width: 20%;display: grid;" href="#" role="button">Fjarlægja vöru</a>
+        <a class="btn btn-lg btn-outline-secondary btn-info" id="button-option" style="width: 20%;display: grid;" href="#" role="button">Bæta við flokk</a>
+        <a class="btn btn-lg btn-outline-secondary btn-info" id="button-option" style="width: 20%;display: grid;" href="#" role="button">Yfirlit pantana</a>
+{#        <button type="button" class="btn btn-primary btn-lg">Large button</button>#}
+{#        <button type="button" class="btn btn-secondary btn-lg">Large button</button>#}
+    </div>
+    </div>
+{% endblock %}
