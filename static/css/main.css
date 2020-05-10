@@ -145,6 +145,10 @@ footer {
     color: white;
 }
 
+#button-option {
+    width: 20%;
+    display: grid;
+}
 
 .main-info {
     /*Er öll upplýsingasíðan á upplýsingasíðu um vöru*/

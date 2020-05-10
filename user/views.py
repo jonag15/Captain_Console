@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'user/index.html')
 
+def search_history(request):
+    return render(request, 'user/search_history.html')
 
 def new_user(request):
     return render(request, 'user/new_user.html')
@@ -17,12 +19,13 @@ def new_user(request):
 def user_area(request):
     return render(request, 'user/user_area.html', context={ 'drasl': drasl })
 
-
 def change_payment(request):
     return render(request, 'user/change_payment.html', context={ 'greidsluuppl': greidsluuppl})
 
-def search_history(request):
-    return render(request, 'user/search_history.html')
+
+def admin_option(request):
+    return render(request, 'user/admin_view.html')
+
 
 def register(request):
     print("Hér er POST")
