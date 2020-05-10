@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dropdown sortedBy">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Raða eftir</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'product_index_price' %}">Verð</a>
+    <a class="dropdown-item" href="{% url 'product_index_name' %}">Nafn</a>
+
+  </div>
+</div>
+
+<span class="col-md-9">
+
+    <div class="container justify-content-center align-items-center">
+        {% for product in products %}
+        <div class="row mb-4">
+            <div class="col-4 themed-grid-col">{{ product.name }}</div>
+            <div class="col-4 themed-grid-col">{{ product.price }}kr</div>
+            <div class="col-4 themed-grid-col">
+                <a class="btn btn-sm btn-info" style="width: 50%;display: grid;" href="{% url 'update_product' product.id %}" role="button">Breyta vöru</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</span>
+
+{% endblock %}
