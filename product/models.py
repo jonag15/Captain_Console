@@ -58,4 +58,3 @@ class SearchHistory(models.Model):
 
 
 
-
