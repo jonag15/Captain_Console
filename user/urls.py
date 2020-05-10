@@ -9,7 +9,7 @@ urlpatterns = [
     path('user_area/change_payment/', views.change_payment, name = 'change_payment'),
     path('admin-option/', views.admin_option, name='admin_option'),  # Admin view
     path('profile/', views.profile, name='profile'),
-    path('profile/picture/', views.picture, name='picture')
+    path('profile/picture/', views.picture, name='picture'),
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='user/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),

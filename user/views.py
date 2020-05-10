@@ -56,7 +56,13 @@ def picture(request):
 
 
 def profile(request):
-    form = User.objects.filter(id=request.user.id).first()
+    postform = User.objects.filter(id=request.user.id).first()
+    if request.method == 'POST':
+        print("post!!!")
+        form = PersonalInfo(instance=postform, data=request.POST)
+        if form.is_valid():
+            postform.save()
+            return redirect('/user/profile')
     return render(request, 'user/profile.html', {
-        'form': ProfileForm(instance=form)
+        'form': PersonalInfo(instance=postform)
     })
