@@ -73,7 +73,12 @@ def update_product(request, id):
             return redirect('get_product_by_id', id=id)
     else:
         form = ProductUpdateForm(instance=instance)
-    return render(request, 'product/update_product', {
+    return render(request, 'product/update_product.html', {
         'form': form,
         'id': id
     })
+
+#For admin to change product
+def get_products_to_choose_from(request):
+    context = {'products': Product.objects.all()}
+    return render(request, 'product/choose_product_update.html', context)
