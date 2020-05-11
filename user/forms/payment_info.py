@@ -6,7 +6,7 @@ class PaymentInfo(ModelForm):
         model = Card
         exclude = []
         widgets = {
-            'card_number': widgets.TextInput(attrs={'class': 'form-control'}),
+            'card_number': widgets.TextInput(attrs={'class': 'form-control', 'label':'blabla'}),
             'valid_month': widgets.NumberInput(attrs={'class': 'form-control'}),
             'valid_year': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'})
