@@ -20,3 +20,5 @@ local_settings.py
 *.pyc
 *.py[cod]
 *$py.class
+product/__pycache__/
+order/__pycache__/
