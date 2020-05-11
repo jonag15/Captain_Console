@@ -20,9 +20,9 @@
                     </p><br>
                 {% endif %}
 
-                <input type="submit" value="Innskrá"
-                       class="btn btn-primary pull-right" />
+                <input type="submit" value="Innskrá" class="btn btn-primary pull-right"/>
                 <input type="hidden" name="next" value="{{ next }}" />
+                <a class="btn btn-secondary" href="{% url 'register' %}" role="button">Nýskráning</a>
             </form>
         </div>
     </div>

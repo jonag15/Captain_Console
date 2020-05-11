@@ -22,3 +22,4 @@ local_settings.py
 *$py.class
 product/__pycache__/
 order/__pycache__/
+user/__pycache__/
