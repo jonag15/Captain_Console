@@ -21,47 +21,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                  <th scope="row" class="border-0">
-                    <div class="p-2">
-                      <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic order_cat">Flokkar: Flokkur</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="border-0 align-middle"><strong>2500kr</strong></td>
-                  <td class="border-0 align-middle">
-
-                        <div class='order_count'>
-                          <button class='down_count btn btn-secondary btn-sm' title='Down'><i class='fa fa-minus'></i></button>
-                          <input class='counter' type="text" placeholder="value..." value='1' />
-                          <button class='up_count btn btn-secondary btn-sm' title='Up'><i class='fa fa-plus'></i></button>
-                        </div>
-
-                  </td>
-                  <td class="border-0 align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="{% static "images/mynd.png" %}" alt="Generic picture" class="img-fluid rounded shadow-sm gen_pic">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Nafn á vöru</a></h5><span class="text-muted font-weight-normal font-italic order_cat">Flokkar: Flokkur</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="align-middle"><strong>1990kr</strong></td>
-                  <td class="align-middle">
-                      <div class='order_count'>
-                          <button class='down_count btn btn-secondary btn-sm' title='Down'><i class='fa fa-minus'></i></button>
-                          <input class='counter' type="text" placeholder="value..." value='1' />
-                          <button class='up_count btn btn-secondary btn-sm' title='Up'><i class='fa fa-plus'></i></button>
-                        </div>
-                  </td>
-                  <td class="align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
+                <div class="order_products">
+                    {% for product in products %}
+                        {include 'order/single_product.html' with product=product %}
+                    {% endfor %}
+                </div>
             </tbody>
         </table>
         <div class="container">

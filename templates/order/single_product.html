@@ -1,0 +1,27 @@
+{% load static %}
+{% block content %}
+    <div class="single_product">
+      <a href="/product/{{ product.id }}">
+        <tr>
+          <th scope="row">
+            <div class="p-2">
+              <img src="{{ product.productimage_set.first.image }}" alt="Picture of product" class="img-fluid rounded shadow-sm gen_pic">
+              <div class="ml-3 d-inline-block align-middle">
+                <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">{{ product.name }}</a></h5>
+              </div>
+            </div>
+          </th>
+          <td class="align-middle"><strong>{{ product.price }}</strong></td>
+          <td class="align-middle">
+              <div class='order_count'>
+                  <button class='down_count btn btn-secondary btn-sm' title='Down'><i class='fa fa-minus'></i></button>
+                  <input class='counter' type="text" value='1' />
+                  <button class='up_count btn btn-secondary btn-sm' title='Up'><i class='fa fa-plus'></i></button>
+                </div>
+          </td>
+          <td class="align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+        </tr>
+      </a>
+    </div>
+
+{% endblock %}
