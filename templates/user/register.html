@@ -10,19 +10,35 @@
             <label for="id_username">Notendanafn:</label><br>
             <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control"><br>
 
+            <label for="id_email">Email:</label><br>
+            <input type="email" name="email" autocomplete="new-email" required="" id="id_email" class="form-control"><br>
+
+
             <label for="id_password1">Lykilorð:</label><br>
             <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="form-control"><br>
 
             <label for="id_password2">Endurtaktu lykilorðið:</label><br>
-            <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-control"><br><br>
+            <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-control">
+            <small class="form-text text-muted">Lykiðorðið verður að vera amk 8 stafir, ekki of líkt notendanafninu þínu, ekki "þekkt" lykilorð og verður að innihalda bæði bókstafi og tölustafi. </small><br>
+
             <input type="submit" class="btn btn-primary" value="Nýskrá">
+            <a class="btn btn-secondary" href="{% url 'login' %}" role="button">Innskráning</a>
 
             {% if form.errors %}
-                <p class=" label label-danger">
-                    Rangt notendanafn eða lykilorð.
-                    Vinsamlegast reyndu aftur.
-                </p><br>
-            {% endif %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+{% endif %}
+
         </form>
     </div>
 </div>
