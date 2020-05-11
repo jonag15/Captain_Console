@@ -10,7 +10,14 @@ from product.models import ProductImage
 def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        product = list(Product.objects.filter(name__icontains=search_filter).values)
+        product = [ {
+            'id': x.id,
+            'name': x.name,
+            'price': x.name,
+            'firstImage' : x.productimage_set.first().image
+        } for x in Product.objects.filter(name__icontains=search_filter)]
+        #product = [dict(id=x.id, name=x.name, price=x.price, firstImage=x.productimage_set.first().image) for x in Product.objects.filter(name__icontains=search_filter)]
+        # product = list(Product.objects.filter(name__icontains=search_filter).values)
         return JsonResponse({'data': product})
     context = {'products': Product.objects.all()}
     return render(request, 'product/index.html', context)
