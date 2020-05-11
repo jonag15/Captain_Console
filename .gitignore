@@ -13,6 +13,7 @@ local_settings.py
 .idea/**/uiDesigner.xml
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea/**/cap_console.iml
 *.iws /out/
 *.log
 *.pot
