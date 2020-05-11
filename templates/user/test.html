@@ -1,7 +1,5 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-    <br>
-    <h1>Innskráning</h1>
     <div id="content-container" class="container p-none">
         <div class="lgn-container col-lg-8">
             <form id="login-form" method="post" action="{% url 'login' %}">
@@ -11,13 +9,13 @@
                 <input id="id_username" name="username" type="text" class="form-control">
 
                 <label for="id_password">Lykilorð</label>
-                <input id="id_password" name="password" type="password" class="form-control"><br>
+                <input id="id_password" name="password" type="password" class="form-control">
 
                 {% if form.errors %}
                     <p class=" label label-danger">
                         Rangt notendanafn eða lykilorð.
                         Vinsamlegast reyndu aftur.
-                    </p><br>
+                    </p>
                 {% endif %}
 
                 <input type="submit" value="Innskrá"
