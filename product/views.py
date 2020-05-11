@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
-from product.models import Product
+from product.models import Product, ProductType
 from product.models import ProductImage
 
 
@@ -43,8 +43,20 @@ def get_product_by_id(request, id):
    })
 
 def get_all_games(request):
-    context = {'products': Product.objects.all()}
-    return
+    context = {'products': Product.objects.filter(category_id=1)}
+    return render(request, 'product/index.html', context)
+
+def get_all_computers(request):
+    context = {'products': Product.objects.filter(category_id=2)}
+    return render(request, 'product/index.html', context)
+
+def get_all_accessory(request):
+    context = {'products': Product.objects.filter(category_id=3)}
+    return render(request, 'product/index.html', context)
+
+def get_all_spareparts(request):
+    context = {'products': Product.objects.filter(category_id=4)}
+    return render(request, 'product/index.html', context)
 
 #Get all products
 def get_products(request):

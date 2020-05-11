@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $('#searchbutton').on( 'click',  function(event) {
         event.preventDefault();
-        let searchText = $('#searchbar').val();
+        var searchText = $('#searchbar').value();
         $.ajax(  {
                 url: '/product?search_filter=' + searchText,
                 type: 'GET',
