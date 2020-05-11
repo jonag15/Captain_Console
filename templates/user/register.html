@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
+<br>
+<h1>Nýskráning</h1>
+<div id="content-container" class="container p-none">
+    <div class="lgn-container col-lg-8">
+        <form id="form form-horizontal" method="POST"">
+            {% csrf_token %}
 
-    <h1>Register</h1>
+            <label for="id_username">Notendanafn:</label><br>
+            <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control"><br>
 
-    <form class="form form-horizontal" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Signup"/>
-    </form>
+            <label for="id_password1">Lykilorð:</label><br>
+            <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="form-control"><br>
 
+            <label for="id_password2">Endurtaktu lykilorðið:</label><br>
+            <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-control"><br><br>
+            <input type="submit" class="btn btn-primary" value="Nýskrá">
+
+            {% if form.errors %}
+                <p class=" label label-danger">
+                    Rangt notendanafn eða lykilorð.
+                    Vinsamlegast reyndu aftur.
+                </p><br>
+            {% endif %}
+        </form>
+    </div>
+</div>
 
 {% endblock %}
