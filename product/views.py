@@ -4,6 +4,7 @@ from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product, ProductType
 from product.models import ProductImage
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
