@@ -63,6 +63,7 @@ def get_products(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/single_product.html', context)
 
+@login_required
 def create_new_product(request):
     if request.method == 'POST':
         form = ProductCreateForm(data=request.POST)
@@ -78,18 +79,20 @@ def create_new_product(request):
         'form': form
     })
 
+@login_required
 def delete_product(request, id):
     product = get_object_or_404(Product, pk=id)
     product.delete()
     return redirect('product_index')
 
+@login_required
 def update_product(request, id):
     instance = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
         form = ProductUpdateForm(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('get_product_by_id', id=id)
+            return redirect('choose_product_to_update')
     else:
         form = ProductUpdateForm(instance=instance)
     return render(request, 'product/update_product.html', {
@@ -98,6 +101,7 @@ def update_product(request, id):
     })
 
 #For admin to change product
+@login_required
 def get_products_to_choose_from(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/choose_product_update.html', context)

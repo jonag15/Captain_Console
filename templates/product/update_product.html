@@ -1,10 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h1>Breyta vöru</h1><br>
     <form class="form form-horizontal" action="{% url 'update_product' id%}"  method="post">
-    {{ form }}
         {%csrf_token%}
-
-    <input type="submit" value="Update" class="btn btn-primary btn-info" style="clear:both; margin: 10px 0px">
+        {{ form.name }}
+        <small class="form-text text-muted">Nafn vöru.</small><br>
+        {{ form.price }}
+        <small class="form-text text-muted">Verð vöru með VSK.</small><br>
+        {{ form.description }}
+        <small class="form-text text-muted">Lýsing á vörunni sem skal stofna.</small><br>
+        {{ form.quantity }}
+        <small class="form-text text-muted">Fjöldi stykkja á lager.</small><br>
+        {{ form.status }}
+        <small class="form-text text-muted">Staða vöru við skráningu.</small><br>
+        <label>Er varan á tilboði?</label>
+        {{ form.on_sale }}
+        <small class="form-text text-muted">Hak fyrir "Já".</small><br>
+        {{ form.category }}
+        <small class="form-text text-muted">Veldu yfirflokk.</small><br>
+        {{ form.sub_type }}
+        <small class="form-text text-muted">Veldu undirflokk.</small><br>
+        {{ form.age_limit }}
+        <small class="form-text text-muted">Veldu aldurstakmark.</small><br>
+        {{ form.manufacturer }}
+        <small class="form-text text-muted">Veldu framleiðanda.</small><br>
+        <p>Mynd:</p>
+        {{ form.image }}
+        <br><br>
+        <input type="submit" value="Vista" class="btn btn-primary btn-info" style="clear:both; margin: 10px 0px">
+        <a class="btn btn-secondary" href="{% url 'choose_product_to_update' %}" role="button">Til baka</a>
     </form>
 {% endblock %}
