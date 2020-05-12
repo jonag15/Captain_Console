@@ -1,30 +1,53 @@
 from django.db import models
 from product.models import Product
-from user.models import Customer
-from user.models import Card
-
-# Create your models here.
+from django.contrib.auth.models import User as AuthUser
+from user.models import Country
 
 
 class OrderStatus(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class DeliveryType(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
     order_status = models.ForeignKey(OrderStatus, on_delete=models.PROTECT)
-    product_quantity = models.IntegerField()
-    price = models.FloatField()
     order_date = models.DateField()
-    delivery = models.ForeignKey(DeliveryType, on_delete=models.PROTECT)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    mail = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    total_price = models.IntegerField()
+    delivery = models.ForeignKey(DeliveryType, on_delete=models.PROTECT, blank=True)
 
 
-class Payment(models.Model):
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-    card_number = models.ForeignKey(Card, on_delete=models.CASCADE)
+class OrderedProducts(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
+
+# auth_user/user er user sem er með aðgang að kerfinu og getur skráð sig inn.
+class AllUserOrders (models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+
+
+# Customer er fyrir notendur sem ekki eru skráðir inn í kerfið.
+class Customer(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=999)
+    zip_code = models.CharField(max_length=10)
+    city = models.CharField(max_length=30)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    mail = models.CharField(max_length=999)
+    card_number = models.CharField(max_length=19)
+    valid_month = models.CharField(max_length=2)
+    valid_year = models.CharField(max_length=2)
+    cvc = models.CharField(max_length=3)
