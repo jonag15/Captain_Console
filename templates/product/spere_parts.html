@@ -2,14 +2,15 @@
 {% load static %}
 {% block content %}
 
+{#    {% for category in categories %}#}
 
 <div class="dropdown sortedBy">
 
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Raða eftir</button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" methods="GET" href="{% url 'product_index_price' %}">Verð</a>
-    <a class="dropdown-item" methods="GET" href="{% url 'product_index_name' %}">Nafn</a>
+    <a class="dropdown-item" methods="GET" href="{% url 'spareparts_by_price' %}">Verð</a>
+    <a class="dropdown-item" methods="GET" href="{% url 'spareparts_by_name' %}">Nafn</a>
       <a class="dropdown-item" methods="GET" href="{% url 'product_index' %}">Allar vörur</a>
 
   </div>

@@ -7,7 +7,6 @@ class ProductCreateForm(ModelForm):
     #image = forms.CharField(widgets=forms.TextInput(attrs={'class': 'form-control'}))
     #image = widgets.TextInput(attrs={'class': 'form-control'})
     image = forms.CharField(required=True)
-
     class Meta:
         model = Product
         exclude = ['id']
@@ -30,7 +29,6 @@ class ProductUpdateForm(ModelForm):
     #image = forms.CharField(widgets=forms.TextInput(attrs={'class': 'form-control'}))
     #image = forms.TextInput(attrs={'class': 'form-control'})
     image = forms.CharField(required=True)
-
     class Meta:
         model = Product
         exclude = ['id']

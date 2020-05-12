@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.urls import reverse
 
 # Create your models here.
 #Þessi model hér verða möppuð inn í gagnagrunnstöflu.

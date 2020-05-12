@@ -4,10 +4,10 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-3">
-{#        {% for product in products %}#}
+
    <div class="card" style="width: 18rem;"> {#style="width: 18rem;">#}
 
-{#        <img src="{% static "images/PlayStation4.PNG" %}" class="card-img-top" alt="...">#}
+
            <img class="image-product card-img-top" src="{{ product.productimage_set.first.image }}">
        <div class="btn justify-content-between align-items-center">
 
@@ -18,8 +18,6 @@
     <div class="card-body">
         <h6 class="card-text productInfo">{{ product.name }}</h6>
         <h6 class="card-text productInfo">{{ product.price }}kr</h6>
-{#            <h6 class="productInfo">Nafn</h6>#}
-{#            <h6 class="productInfo">VerÃ°</h6>#}
 
     </div>
 
@@ -27,7 +25,7 @@
    </div>
     <div class="col-sm-1"></div>
     <div class="col-sm-3 align-self-end">
-        <a class="btn btn-info info_btn" href="#" role="button">Setja í körfu</a>
+        <a class="btn btn-info info_btn" onclick="AddItem({{ product.id }})" role="button">Setja í körfu</a>
     </div>
 
 
@@ -42,8 +40,6 @@
       <p class="card-text productInfo">{{ product.description }}</p>
   </div>
 </div>
-{#        {% endfor %}#}
-
     </div>
         </div>
 
