@@ -1,5 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from user.forms.registration import UserCreationForm
 from django.shortcuts import render, redirect
 from user.forms.personal_info import PersonalInfo
 from user.forms.personal_info import AddressInfo
@@ -10,9 +9,6 @@ from user.models import Customer
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-
-# TEST
 
 # Create your views here.
 
@@ -53,7 +49,6 @@ def picture(request):
 @login_required
 def profile(request):
     if request.user.is_staff:
-        print("Starfsmaður")
         return redirect('/user/admin-option')
     postform = User.objects.filter(id=request.user.id).first()
     address = Customer.objects.filter(id=request.user.id).first()
@@ -85,7 +80,6 @@ def change_payment(request):
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
-        password =  request.POST['password']
         post = User.objects.filter(username=username)
         if post:
             username = request.POST['username']

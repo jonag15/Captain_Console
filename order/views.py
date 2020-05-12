@@ -1,3 +1,4 @@
+import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -11,8 +12,11 @@ from product.models import Product
 
 # Create your views here.
 def index(request):
-    if 'order_list' in request.GET:
-        order_list = request.GET['order_list']
+    if request.method == 'POST':
+        order_list = []
+        order_json = json.loads(request.POST['orderList'])
+        for id in order_json['paramName']:
+            order_list.append(id)
         products = [ {
             'id': x.id,
             'name': x.name,
@@ -20,7 +24,6 @@ def index(request):
             'firstImage': x.productimage_set.first().image
         } for x in Product.objects.filter(pk__in=order_list) ]
         return JsonResponse({'data': products})
-
     return render(request, 'order/index.html')
 
 

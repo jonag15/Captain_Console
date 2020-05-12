@@ -11,3 +11,5 @@ class PaymentInfo(ModelForm):
             'valid_year': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'})
         }
+
+

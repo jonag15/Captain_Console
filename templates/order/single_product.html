@@ -1,8 +1,8 @@
 {% load static %}
 {% block content %}
-    <div class="single_product">
+
       <a href="/product/{{ product.id }}">
-        <tr>
+
           <th scope="row">
             <div class="p-2">
               <img src="{{ product.productimage_set.first.image }}" alt="Picture of product" class="img-fluid rounded shadow-sm gen_pic">
@@ -20,8 +20,8 @@
                 </div>
           </td>
           <td class="align-middle trash-can"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-        </tr>
+
       </a>
-    </div>
+
 
 {% endblock %}
