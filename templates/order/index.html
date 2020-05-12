@@ -26,13 +26,19 @@
                     {% endfor %}
             </tbody>
         </table>
+    </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="col-sm-2">
-                    <input type="text" id="total_price" value="Heildarverð: 0 kr" readonly>
+                <div class="col-sm-2 align-middle col_around_total col_around">
+                    <h4>Heildarverð:</h4>
                 </div>
-                <div class="col-sm-2"></div>
+                <div class="col-sm-1" id="col_for_total">
+                    <input id="total_price_num" class="price_total" type="text" value="0" readonly/>
+                </div>
+                <div class="col-sm-1 align-middle col_around col_kr">
+                    <h4>kr</h4>
+                </div>
                 <div class="col-sm-2">
                     <a role="button" class="btn btn-primary btn-lg order_btn" href="{% url 'product_index' %}">Til baka</a>
                 </div>
@@ -42,6 +48,5 @@
 
             </div>
         </div>
-    </div>
 
 {% endblock %}

@@ -35,7 +35,9 @@ function updateOrder() {
 		var orderList = [];
 		var i = 0;
 		for (i = 0; i <= localStorage.length - 1; i++) {
-			orderList.push(parseInt(localStorage.key(i)));
+			if ( parseInt(localStorage.key(i)) !== NaN) {
+				orderList.push(parseInt(localStorage.key(i)));
+			};
 		};
 		$.ajaxSetup({
     	beforeSend: function(xhr, settings) {
@@ -62,8 +64,9 @@ function updateOrder() {
 									  </div>
 									</div>
 								  </th>
-								  <td id="price_${d.id}" class="align-middle price" value=${total_price}><strong>${d.price} kr</strong></td>
-								  <td class="align-middle">
+								  <td class="align-middle price" value="${total_price}" ><strong>${d.price} kr</strong>
+								  </td>
+								  <td id="price_${d.id}" class="align-middle" value="${d.price}">
 									  <div class='order_count'>
 										  <button class='down_count btn btn-secondary btn-sm' title='Down' onclick="downCount(${d.id})"><i class='fa fa-minus'></i></button>
 										  <input id="counter_${d.id}"  class='counter' type="text" value=${count} />
@@ -72,8 +75,6 @@ function updateOrder() {
 								  </td>
 								  <td class="align-middle trash-can"><a class="text-dark" onclick="RemoveItem(${d.id})" ><i class="fa fa-trash"></i></a></td>
 								</tr>`
-
-
 				});
 				$('.order_products').html(newHtml.join(''));
 				totalPrice()
@@ -84,14 +85,6 @@ function updateOrder() {
 		})
 }
 
-function totalPrice() {
-	var sumPrice = 0;
-    var allPrices = $(".price");
-	for(var i = 0; i < allPrices.length; i++){
-    	sumPrice += parseInt(allPrices[i]['attributes'][2]['nodeValue']);
-	}
-    $("#total_price").val("Heildarverð: " + sumPrice + " kr");
-}
 
 $(document).ready(function() {
 	if (top.location.pathname === '/order/') {
@@ -109,20 +102,25 @@ function AddItem(product_id) {
 	}
 }
 
-
+function totalPrice() {
+	var sumPrice = 0;
+    var allPrices = $(".price");
+	for(var i = 0; i < allPrices.length; i++){
+    	sumPrice += parseInt(allPrices[i]['attributes'][1]['nodeValue']);
+	}
+	localStorage.setItem('total_price', sumPrice)
+    $("#total_price_num").val(sumPrice);
+}
 
 function upCount(product_id) {
 	if (localStorage.getItem(product_id) != null) {
 		var count = localStorage.getItem(product_id);
 		localStorage.setItem(product_id, parseInt(count) + 1);
-		$('#counter_' + product_id).val(parseInt(count) + 1);
-		var old_total_price = parseInt($('#price_' + product_id)[0]['attributes'][2]['nodeValue']);
-		var price_to_add = old_total_price / count
-		var id_str = "price_" + product_id
-		console.log(id_str)
-		$("#"+id_str).val(old_total_price + price_to_add);
-		totalPrice()
-
+		var change_amount = parseInt($('#price_' + product_id)[0]['attributes'][2]['nodeValue']);
+		value = localStorage.getItem('total_price');
+		new_value = parseInt(value) + change_amount;
+		localStorage.setItem('total_price', new_value);
+		$("#total_price_num").val(new_value)
 	}
 }
 
@@ -132,15 +130,11 @@ function downCount(product_id) {
 		if (count - 1 >= 1) {
 			localStorage.setItem(product_id, parseInt(count) - 1);
 			$('#counter_' + product_id).val(parseInt(count) - 1);
-			var old_total_price = parseInt($('#price_' + product_id)[0]['attributes'][2]['nodeValue']);
-			var price_to_subtract = old_total_price / count
-			var new_total_price = old_total_price - price_to_subtract
-			console.log(new_total_price)
-			var id_str = "price_" + product_id
-			console.log(id_str)
-			$("#"+id_str).val(new_total_price);
-			console.log($("#"+id_str))
-			totalPrice()
+			var change_amount = parseInt($('#price_' + product_id)[0]['attributes'][2]['nodeValue']);
+			value = localStorage.getItem('total_price');
+			new_value = parseInt(value) - change_amount;
+			localStorage.setItem('total_price', new_value);
+			$("#total_price_num").val(new_value)
 		}
 	}
 }
@@ -154,4 +148,46 @@ function RemoveItem(product_id) {
 
 function ClearAllItems() {
 	localStorage.clear();
+}
+
+function saveUserInfo() {
+	var first_name_element = document.getElementById('id_first_name')
+	var first_name = first_name_element.value;
+	localStorage.setItem('first_name', first_name);
+
+	var last_name_element = document.getElementById('id_last_name')
+	var last_name = last_name_element.value;
+	localStorage.setItem('last_name', last_name);
+
+	var email_element = document.getElementById('id_email')
+	var email = email_element.value;
+	localStorage.setItem('email', email);
+
+	var address_element = document.getElementById('id_address')
+	var address = address_element.value;
+	localStorage.setItem('address', address);
+
+	var zip_code_element = document.getElementById('id_zip_code')
+	var zip_code = zip_code_element.value;
+	localStorage.setItem('zip_code', zip_code);
+
+	var country_element = document.getElementById('id_country')
+	var country = country_element.value;
+	localStorage.setItem('country', country);
+
+	var card_number_element = document.getElementById('id_card_number')
+	var card_number = card_number_element.value;
+	localStorage.setItem('card_number', card_number);
+
+	var valid_month_element = document.getElementById('id_valid_month')
+	var valid_month = valid_month_element.value;
+	localStorage.setItem('valid_month', valid_month);
+
+	var valid_year_element = document.getElementById('id_valid_year')
+	var valid_year = valid_year_element.value;
+	localStorage.setItem('valid_year', valid_year);
+
+	var cvc_element = document.getElementById('id_cvc')
+	var cvc = cvc_element.value;
+	localStorage.setItem('cvc', cvc);
 }
