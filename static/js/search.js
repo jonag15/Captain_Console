@@ -13,6 +13,7 @@ $(document).ready(function() {
                                 <img class="image-product card-img-top" src="${d.firstImage}" alt="ProductImage" />
                                 <h4>${d.name}</h4>
                                 </a>
+                                <h4>${d.price}</h4>
                             </div>`
                     });
                     $('#product').html(newHtml.join(''));

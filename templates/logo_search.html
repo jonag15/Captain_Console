@@ -6,7 +6,7 @@
     </a>
 
 
-    <form class="form-inline my-2 my-lg-0 text-center mx-auto" id="searchform">
+    <form class="form-inline my-2 my-lg-0 text-center mx-auto" id="searchform" action="{% url 'product_index' %}" method="get">
         <input class="form-control-lg mr-sm-2" id="searchbar" type="search" placeholder="Ég er að leita að..." aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0 btn-lg" id="searchbutton" formmethod="GET" type="submit">Leita</button>
     </form>
