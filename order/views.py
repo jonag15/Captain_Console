@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from user.forms.personal_info import PersonalInfo
 from user.forms.personal_info import AddressInfo
 from user.forms.payment_info import PaymentInfo
-from user.models import Customer
+from user.models import Address
 from user.models import Card
 from product.models import Product
 
@@ -28,7 +28,6 @@ def index(request):
 
 
 def payment(request):
-
     return render(request, 'order/payment.html')
 
 def overview(request):
