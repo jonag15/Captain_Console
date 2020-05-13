@@ -2,10 +2,7 @@ from django.db import models
 from user.models import Profile
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 23f6339... Allt gott
 # Create your models here.
 #Þessi model hér verða möppuð inn í gagnagrunnstöflu.
 #Nafnið á klasanum verður heitið á gagnagrunnstöflunni.
