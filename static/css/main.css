@@ -1,3 +1,34 @@
+[onclick] {
+    cursor: pointer;
+}
+
+.price_total {
+    border: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.col_around_total {
+    text-align: right;
+}
+
+
+.col_around {
+    margin-top: 4px;
+}
+
+#col_for_total, .col_kr {
+    padding: 0;
+}
+
+.product_value {
+    border: 0;
+    color: white;
+    width: 1px;
+    height: 1px;
+}
 
 .navbar {
     background-color: #257a9f;
@@ -45,6 +76,7 @@
     border-radius: 0px !important;
     text-align: center;
 }
+
 .up_count {
     height: 30px;
     margin-top: 1px;
