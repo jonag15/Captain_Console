@@ -32,6 +32,7 @@ function csrfSafeMethod(method) {
 
 function updateOrder() {
 		var csrftoken = getCookie('csrftoken');
+		console.log(csrftoken)
 		var orderList = [];
 		var i = 0;
 		for (i = 0; i <= localStorage.length - 1; i++) {
@@ -116,6 +117,7 @@ function upCount(product_id) {
 	if (localStorage.getItem(product_id) != null) {
 		var count = localStorage.getItem(product_id);
 		localStorage.setItem(product_id, parseInt(count) + 1);
+		$('#counter_' + product_id).val(parseInt(count) + 1);
 		var change_amount = parseInt($('#price_' + product_id)[0]['attributes'][2]['nodeValue']);
 		value = localStorage.getItem('total_price');
 		new_value = parseInt(value) + change_amount;
@@ -150,44 +152,148 @@ function ClearAllItems() {
 	localStorage.clear();
 }
 
-function saveUserInfo() {
-	var first_name_element = document.getElementById('id_first_name')
-	var first_name = first_name_element.value;
-	localStorage.setItem('first_name', first_name);
-
-	var last_name_element = document.getElementById('id_last_name')
-	var last_name = last_name_element.value;
-	localStorage.setItem('last_name', last_name);
-
-	var email_element = document.getElementById('id_email')
-	var email = email_element.value;
-	localStorage.setItem('email', email);
-
-	var address_element = document.getElementById('id_address')
-	var address = address_element.value;
-	localStorage.setItem('address', address);
-
-	var zip_code_element = document.getElementById('id_zip_code')
-	var zip_code = zip_code_element.value;
-	localStorage.setItem('zip_code', zip_code);
-
-	var country_element = document.getElementById('id_country')
-	var country = country_element.value;
-	localStorage.setItem('country', country);
-
-	var card_number_element = document.getElementById('id_card_number')
-	var card_number = card_number_element.value;
-	localStorage.setItem('card_number', card_number);
-
-	var valid_month_element = document.getElementById('id_valid_month')
-	var valid_month = valid_month_element.value;
-	localStorage.setItem('valid_month', valid_month);
-
-	var valid_year_element = document.getElementById('id_valid_year')
-	var valid_year = valid_year_element.value;
-	localStorage.setItem('valid_year', valid_year);
-
-	var cvc_element = document.getElementById('id_cvc')
-	var cvc = cvc_element.value;
-	localStorage.setItem('cvc', cvc);
+function submitForms() {
+	document.getElementById("user_info").submit();
+    document.getElementById("card_info").submit();
 }
+
+$(document).ready(function() {
+
+    $('#save_user_info').on( 'click',  function() {
+		var first_name_element = document.getElementById('id_first_name')
+		var first_name = first_name_element.value;
+		localStorage.setItem('first_name', first_name);
+
+		var last_name_element = document.getElementById('id_last_name')
+		var last_name = last_name_element.value;
+		localStorage.setItem('last_name', last_name);
+
+		var email_element = document.getElementById('id_email')
+		var email = email_element.value;
+		localStorage.setItem('email', email);
+
+		var address_element = document.getElementById('id_address')
+		var address = address_element.value;
+		localStorage.setItem('address', address);
+
+		var zip_code_element = document.getElementById('id_zip_code')
+		var zip_code = zip_code_element.value;
+		localStorage.setItem('zip_code', zip_code);
+
+		var country_element = document.getElementById('id_country')
+		var country = country_element.value;
+		localStorage.setItem('country', country);
+
+		var card_number_element = document.getElementById('id_card_number')
+		var card_number = card_number_element.value;
+		localStorage.setItem('card_number', card_number);
+
+		var valid_month_element = document.getElementById('id_valid_month')
+		var valid_month = valid_month_element.value;
+		localStorage.setItem('valid_month', valid_month);
+
+		var valid_year_element = document.getElementById('id_valid_year')
+		var valid_year = valid_year_element.value;
+		localStorage.setItem('valid_year', valid_year);
+
+		var cvc_element = document.getElementById('id_cvc')
+		var cvc = cvc_element.value;
+		localStorage.setItem('cvc', cvc);
+});
+});
+
+$(document).ready(function() {
+	if (top.location.pathname === '/order/payment/') {
+		if (localStorage.getItem('first_name') != null) {
+			$("#id_first_name").val(localStorage.getItem('first_name'));
+		}
+		if (localStorage.getItem('last_name') != null) {
+			$("#id_last_name").val(localStorage.getItem('last_name'));
+		}
+		if (localStorage.getItem('email') != null) {
+			$("#id_email").val(localStorage.getItem('email'));
+		}
+		if (localStorage.getItem('address') != null) {
+			$("#id_address").val(localStorage.getItem('address'));
+		}
+		if (localStorage.getItem('zip_code') != null) {
+			$("#id_zip_code").val(localStorage.getItem('zip_code'));
+		}
+		if (localStorage.getItem('country') != null) {
+			$("#id_country").val(localStorage.getItem('country'));
+		}
+
+		if (localStorage.getItem('card_number') != null) {
+			$("#id_card_number").val(localStorage.getItem('card_number'));
+		}
+		if (localStorage.getItem('valid_month') != null) {
+			$("#id_valid_month").val(localStorage.getItem('valid_month'));
+		}
+		if (localStorage.getItem('country') != null) {
+			$("#id_valid_year").val(localStorage.getItem('valid_year'));
+		}
+		if (localStorage.getItem('cvc') != null) {
+			$("#id_cvc").val(localStorage.getItem('cvc'));
+		}
+	};
+});
+
+$(document).ready(function() {
+	if (top.location.pathname === '/order/payment/overview') {
+        $("#id_first_name_view").val(localStorage.getItem('first_name'));
+		$("#id_last_name_view").val(localStorage.getItem('last_name'));
+		$("#id_email_view").val(localStorage.getItem('email'));
+		$("#id_address_view").val(localStorage.getItem('address'));
+		$("#id_zip_code_view").val(localStorage.getItem('zip_code'));
+		$("#id_country_view").val(localStorage.getItem('country'));
+
+		$("#id_card_number_view").val(localStorage.getItem('card_number'));
+		$("#id_valid_month_view").val(localStorage.getItem('valid_month'));
+		$("#id_valid_year_view").val(localStorage.getItem('valid_year'));
+		$("#id_cvc_view").val(localStorage.getItem('cvc'));
+		$("#total_price_num_view").val('Heildarverð: ' + localStorage.getItem('total_price') + ' kr');
+
+		var csrftoken = getCookie('csrftoken');
+		var orderList = [];
+		var i = 0;
+		for (i = 0; i <= localStorage.length - 1; i++) {
+			if ( parseInt(localStorage.key(i)) !== NaN) {
+				orderList.push(parseInt(localStorage.key(i)));
+			};
+		};
+		$.ajaxSetup({
+    	beforeSend: function(xhr, settings) {
+        	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            	xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        		}
+    		}
+		});
+		$.ajax( {
+			url: '/order/payment/overview',
+			type: 'POST',
+			ContentType: 'application/json',
+			data: {'orderList': JSON.stringify({ paramName: orderList })},
+			success: function (response) {
+				var newHtml = response.data.map(d => {
+					var count = localStorage.getItem((d.id).toString())
+					var total_price = d.price * count
+					return   `<tr>
+							  <th scope="row">
+								<div class="p-2">
+								  <div class="ml-3 d-inline-block align-middle">
+									<h5 class="mb-0"><a href="href="/product/${d.id}" class="text-dark d-inline-block">${d.name}</a></h5>
+								  </div>
+								</div>
+							  </th>
+							  <td class="align-middle price">${d.price} kr</td>
+							  <td class="align-middle price">${count}</td>
+							</tr>`
+				});
+				$('.order_products_overview').html(newHtml.join(''));
+			},
+			error: function (xhr, status, error) {
+				// TODO: error message
+			}
+		})
+	}
+});

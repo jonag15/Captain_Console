@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
+    <div class="row"><br>
+        <div class="col-lg-12">
+            <h3 class="order_title">Vinsamlegast fylltu inn eftirfarandi upplýsingar:</h3>
+        </div>
+    </div>
 
     <div class="row"><br>
 
@@ -47,7 +52,7 @@
             <input type="number" name="valid_year" class="form-control" maxlength="2" required="" id="id_valid_year">
 
             <label for="id_cvc">cvc:</label>
-            <input type="number" name="cvc" class="form-control" maxlength="3" required="" id="id_cvc">
+            <input type="number" name="cvc" class="form-control no_show_arrow" maxlength="3" required="" id="id_cvc">
 
         </form>
       </div>
@@ -55,7 +60,7 @@
 
       <div class="col-lg-4 text-center align-self-end">
           <a class="btn btn-primary btn-lg order_btn" href="{% url 'order_index' %}" role="button">Fyrra skref</a>
-          <a class="btn btn-success btn-lg order_btn" href="#" role="button" onclick="saveUserInfo()">Næsta skref</a>
+          <a id="save_user_info" class="btn btn-success btn-lg order_btn" href="{% url 'order_overview' %}" role="button" >Næsta skref</a>
 
       </div>
     </div>
