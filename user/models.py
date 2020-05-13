@@ -2,65 +2,32 @@ from django.db import models
 from django.contrib.auth.models import User as AuthUser
 
 
-# Create your models here.
-
-
-class UserStatus(models.Model):
-    name = models.CharField(max_length=255)
-
-
-class UserRole(models.Model):
-    name = models.CharField(max_length=255)
-
-
-class ZipCode(models.Model):
-    postal_code = models.CharField(max_length=5)
-    city = models.CharField(max_length=255)
-
-
 class Country(models.Model):
     name = models.CharField(max_length=255)
 
 
-class Card(models.Model):
+# auth_user/user er user sem er með aðgang að kerfinu og getur skráð sig inn.
+class Address (models.Model):
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    address = models.CharField(max_length=999)
+    zip_code = models.CharField(max_length=10)
+    city = models.CharField(max_length=30)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+
+class Card (models.Model):
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
     card_number = models.CharField(max_length=19)
     valid_month = models.CharField(max_length=2)
     valid_year = models.CharField(max_length=2)
     cvc = models.CharField(max_length=3)
 
 
-class User(models.Model):
-    user_name = models.CharField(max_length = 255)
-    password = models.CharField(max_length = 255)
-    user_status = models.ForeignKey(UserStatus, on_delete=models.CASCADE)
-    user_role = models.ForeignKey(UserRole, on_delete=models.CASCADE)
-
-
-class Customer(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    address = models.CharField(max_length=999)
-    zip_code = models.ForeignKey(ZipCode, on_delete=models.CASCADE)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    card_number = models.ForeignKey(Card, on_delete=models.CASCADE)
-    mail = models.CharField(max_length=999)
-
-
-class UserImage(models.Model):
-    image = models.CharField(max_length=999)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
-
-class Admin(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class Profile(models.Model):
     user = models.OneToOneField(AuthUser, on_delete=models.CASCADE)
-    profile_image = models.CharField(max_length=9999)
 
 
-
-
+class UserImage (models.Model):
+    user = models.ForeignKey(AuthUser, on_delete=models.CASCADE)
+    image = models.CharField(max_length=999, default='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png')
 

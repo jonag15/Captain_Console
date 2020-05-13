@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
-from product.models import Product, ProductType
+from product.models import Product, ProductType, ProductSubTypes
 from product.models import ProductImage
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -51,6 +54,17 @@ def get_all_games(request):
     context = {'products': Product.objects.filter(category_id=1)}
     return render(request, 'product/games.html', context)
 
+
+def games_by_name(request):
+    context = {'product': Product.objects.filter(category_id=1).order_by('name')}
+    return render(request, 'product/games.html', context)
+
+def games_by_price(request):
+    context = {'products': Product.objects.filter(category_id=1).order_by('price')}
+    return render(request, 'product/games.html', context)
+
+
+
 def games_by_name(request):
     context = {'product': Product.objects.filter(category_id=1).order_by('name')}
     return render(request, 'product/games.html', context)
@@ -64,6 +78,7 @@ def get_all_computers(request):
     context = {'products': Product.objects.filter(category_id=2)}
     return render(request, 'product/computers.html', context)
 
+
 def computers_by_name(request):
     context = {'products': Product.objects.filter(category_id=2).order_by('name')}
     return render(request, 'product/computers.html', context)
@@ -71,6 +86,17 @@ def computers_by_name(request):
 def computers_by_price(request):
     context = {'products': Product.objects.filter(category_id=2).order_by('price')}
     return render(request, 'product/computers.html', context)
+
+
+
+def computers_by_name(request):
+    context = {'products': Product.objects.filter(category_id=2).order_by('name')}
+    return render(request, 'product/computers.html', context)
+
+def computers_by_price(request):
+    context = {'products': Product.objects.filter(category_id=2).order_by('price')}
+    return render(request, 'product/computers.html', context)
+
 
 #All accessory views
 def get_all_accessory(request):
@@ -150,4 +176,32 @@ def update_product(request, id):
 def get_products_to_choose_from(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/choose_product_update.html', context)
+
+
+
+#
+# def get_queryset_of_subtype(request):
+#     """
+#     Optionally restricts the returned purchases to a given user,
+#     by filtering against a `username` query parameter in the URL.
+#     """
+#     queryset = Product.objects.all()
+#     subtype = Product.sub_type.objects()
+#     for x in subtype:
+#
+#         queryset = queryset.filter(sub_type_id=x)
+#     return render(request, 'product/games.html', queryset)
+
+def get_subtypes(request):
+    return render(request, 'index.html', {})
+
+
+def single_slug(request, single_slug):
+    matching_product = []
+    product_subtype = [p.sub_type for p in Product.objects.all() ]
+    if single_slug in product_subtype:
+        matching_product.append(single_slug)
+        return render(request, "index.html", {
+
+        })
 
