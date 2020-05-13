@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'home.apps.HomeConfig',
     'order.apps.OrderConfig',
     'product.apps.ProductConfig',
     'user.apps.UserConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -82,9 +84,9 @@ WSGI_APPLICATION = 'cap_console.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'arpydhhw',
-        'USER': 'arpydhhw',
-        'PASSWORD': 'WWq0roS9_zdOf0t_ku5CPUBJSlFiYodD',
+        'NAME': 'leahktru',
+        'USER': 'leahktru',
+        'PASSWORD': 'WPIhALk6JOCK4iNNPkMZt7farM64uGhL',
         'HOST': 'balarama.db.elephantsql.com',
         'PORT': '5432'
 }
