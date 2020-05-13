@@ -28,18 +28,8 @@ def index(request):
 
 
 def payment(request):
-    user = User.objects.filter(id=request.user.id).first()
-    address = Customer.objects.filter(id=request.user.id).first()
-    paymentInfo = Card.objects.filter(id=request.user.id).first()
 
-    if request.method == 'POST':
-        print('order/payment - POST')
-
-    return render(request, 'order/payment.html', {
-        'form': PersonalInfo(instance=user),
-        'address': AddressInfo(instance=address),
-        'carddetails': PaymentInfo(instance=paymentInfo)
-    })
+    return render(request, 'order/payment.html')
 
 def overview(request):
     if request.method == 'POST':
