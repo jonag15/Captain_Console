@@ -9,6 +9,7 @@ from user.models import Customer
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 def search_history(request):
     return render(request, 'user/search_history.html')
 
-@login_required
+@staff_member_required
 def admin_option(request):
     return render(request, 'user/admin_view.html')
 

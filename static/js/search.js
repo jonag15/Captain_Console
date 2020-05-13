@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $('#searchbutton').on( 'click',  function(event) {
         event.preventDefault();
         let searchText = $('#searchbar').val();
