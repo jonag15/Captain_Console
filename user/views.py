@@ -5,7 +5,7 @@ from user.forms.personal_info import AddressInfo
 from user.forms.payment_info import PaymentInfo
 from user.models import UserImage
 from user.models import Card
-from user.models import Customer
+#from user.models import Customer
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
