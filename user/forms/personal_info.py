@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
-#from user.models import Customer       #þarf að laga tengingu
+from user.models import Address
 
 class PersonalInfo(ModelForm):
     class Meta:
@@ -14,10 +14,11 @@ class PersonalInfo(ModelForm):
 
 class AddressInfo(ModelForm):
     class Meta:
-        model = User   #breytti hér
-        exclude = [ 'first_name', 'last_name', 'mail', 'card_number_id', 'user_id', 'card_number' ]
+        model = Address   #breytti hér
+        exclude = [ 'first_name', 'last_name', 'mail', 'card_number_id', 'user_id', 'card_number', 'user' ]
         widgets = {
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
+            'city': widgets.TextInput(attrs={'class': 'form-control'}),
             'zip_code': widgets.TextInput(attrs={'class': 'form-control'}),
             'country': widgets.TextInput(attrs={'class': 'form-control'})
         }
