@@ -36,11 +36,11 @@ def index(request):
 
 
 def payment(request):
-    user = User.objects.filter(id=request.user.id).first()
-    address = Address.objects.filter(id=request.user.id).first()
-    paymentInfo = Card.objects.filter(id=request.user.id).first()
+    return render(request, 'order/payment.html')
 
+def overview(request):
     if request.method == 'POST':
+<<<<<<< HEAD
         print('order/payment - POST')
 
     return render(request, 'order/payment.html', {
@@ -67,3 +67,16 @@ def create_new_order(request):
         'form_user': form_user,
         'form_order': form_order
     })
+=======
+        order_list = []
+        order_json = json.loads(request.POST['orderList'])
+        for id in order_json['paramName']:
+            order_list.append(id)
+        products = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+        } for x in Product.objects.filter(pk__in=order_list)]
+        return JsonResponse({'data': products})
+    return render(request, 'order/overview.html')
+>>>>>>> 7f266f23d0fb7bfcb40d9ef9bbd420688fc8ad81
