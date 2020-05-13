@@ -6,16 +6,19 @@ from user.forms.payment_info import PaymentInfo
 from user.models import UserImage
 from user.models import Card
 from user.models import Address
+from product.models import SearchHistory
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from product.forms.product_form import Product
 
 # Create your views here.
 
 @login_required
 def search_history(request):
-    return render(request, 'user/search_history.html')
+    context = {'products': Product.objects.filter(searchhistory__profile=request.user.id)}
+    return render(request, 'user/search_history.html', context)
 
 @staff_member_required
 def admin_option(request):
