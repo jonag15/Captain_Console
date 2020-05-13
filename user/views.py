@@ -5,7 +5,7 @@ from user.forms.personal_info import AddressInfo
 from user.forms.payment_info import PaymentInfo
 from user.models import UserImage
 from user.models import Card
-from user.models import Customer
+from user.models import Address
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -52,7 +52,7 @@ def profile(request):
     if request.user.is_staff:
         return redirect('/user/admin-option')
     postform = User.objects.filter(id=request.user.id).first()
-    address = Customer.objects.filter(id=request.user.id).first()
+    address = Address.objects.filter(id=request.user.id).first()
     if request.method == 'POST':
         personalform = PersonalInfo(instance=postform, data=request.POST)
         if personalform.is_valid():
