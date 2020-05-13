@@ -2,6 +2,34 @@
     cursor: pointer;
 }
 
+.order_title {
+    margin-bottom: 10px;
+}
+
+.readonly_form {
+    border: 0;
+    background-color: white !important;
+    font-size: 1.25rem;
+}
+
+.readonly_form:hover {
+    cursor: default;
+}
+
+.no_show_arrow {
+    -moz-appearance: textfield;
+}
+
+.no_show_arrow::-webkit-outer-spin-button,
+.no_show_arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.readonly_form:active {
+    display: none;
+}
+
 .price_total {
     border: 0;
     font-size: 1.5rem;
