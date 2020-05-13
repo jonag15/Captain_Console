@@ -40,34 +40,6 @@ def payment(request):
 
 def overview(request):
     if request.method == 'POST':
-<<<<<<< HEAD
-        print('order/payment - POST')
-
-    return render(request, 'order/payment.html', {
-        'form': PersonalInfo(instance=user),
-        'address': AddressInfo(instance=address),
-        'carddetails': PaymentInfo(instance=paymentInfo)
-    })
-
-def create_new_order(request):
-    if request.method == 'POST':
-        form_user = PersonalInfoOrder(data=request.POST)
-        form_order = CreateOrder(data=request.POST)
-        if form_order.is_valid() & form_user.is_valid():
-            order = form_order.save()
-
-            personal_info = form_user.save()
-            #order_info = Order(image=request.POST['image'], product=product)
-
-            return redirect('order_comfirm')
-        else:
-            form_order = CreateOrder()
-            form_user = PersonalInfoOrder()
-    return render(request, 'order/some.html', {
-        'form_user': form_user,
-        'form_order': form_order
-    })
-=======
         order_list = []
         order_json = json.loads(request.POST['orderList'])
         for id in order_json['paramName']:
@@ -79,4 +51,35 @@ def create_new_order(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     return render(request, 'order/overview.html')
->>>>>>> 7f266f23d0fb7bfcb40d9ef9bbd420688fc8ad81
+
+
+  #
+    #     print('order/payment - POST')
+    #
+    # return render(request, 'order/payment.html', {
+    #     'form': PersonalInfo(instance=user),
+    #     'address': AddressInfo(instance=address),
+    #     'carddetails': PaymentInfo(instance=paymentInfo)
+    # })
+
+
+
+
+def create_new_order(request):
+    if request.method == 'POST':
+        form_user = PersonalInfoOrder(data=request.POST)
+        form_order = CreateOrder(data=request.POST)
+        if form_order.is_valid() & form_user.is_valid():
+            order = form_order.save()
+
+            personal_info = form_user.save()
+            #order_info = Order(image=request.POST['image'], product=product)
+
+            return redirect('order_complete')
+        else:
+            form_order = CreateOrder()
+            form_user = PersonalInfoOrder()
+    return render(request, 'order/order_complete.html', {
+        'form_user': form_user,
+        'form_order': form_order
+    })
