@@ -4,7 +4,8 @@ from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product, ProductType, ProductSubTypes
 from product.models import ProductImage
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -129,7 +130,7 @@ def get_products(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/single_product.html', context)
 
-@login_required
+@staff_member_required
 def create_new_product(request):
     if request.method == 'POST':
         form = ProductCreateForm(data=request.POST)
@@ -146,13 +147,13 @@ def create_new_product(request):
         'form': form
     })
 
-@login_required
+@staff_member_required
 def delete_product(request, id):
     product = get_object_or_404(Product, pk=id)
     product.delete()
     return redirect('product_index')
 
-@login_required
+@staff_member_required
 def update_product(request, id):
     instance = get_object_or_404(Product, pk=id)
     if request.method == 'POST':
@@ -171,7 +172,7 @@ def update_product(request, id):
     })
 
 #For admin to change product
-@login_required
+@staff_member_required
 def get_products_to_choose_from(request):
     context = {'products': Product.objects.all()}
     return render(request, 'product/choose_product_update.html', context)
