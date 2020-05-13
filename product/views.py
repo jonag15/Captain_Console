@@ -1,21 +1,28 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
+from django.db.models import DateField
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product, ProductType, ProductSubTypes
 from product.models import ProductImage
+from product.models import SearchHistory
+from datetime import date
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 
 
 # Create your views here.
 def index(request):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
+        if request.user.is_authenticated:
+            form = SearchHistory()
+            for prod in Product.objects.filter(name__icontains=search_filter):
+                form.product_id = prod.id
+                form.search_date = date.today()
+                form.profile_id = request.user.id
+                form.save()
         product = [ {
             'id': x.id,
             'name': x.name,
