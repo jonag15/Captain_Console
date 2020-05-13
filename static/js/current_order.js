@@ -32,12 +32,13 @@ function csrfSafeMethod(method) {
 
 function updateOrder() {
 		var csrftoken = getCookie('csrftoken');
-		console.log(csrftoken)
 		var orderList = [];
 		var i = 0;
 		for (i = 0; i <= localStorage.length - 1; i++) {
-			if ( parseInt(localStorage.key(i)) !== NaN) {
+			if ( parseInt(localStorage.key(i)) !== NaN)  {
+				if (parseInt(localStorage.key(i)) !== null) {
 				orderList.push(parseInt(localStorage.key(i)));
+				};
 			};
 		};
 		$.ajaxSetup({
@@ -56,6 +57,7 @@ function updateOrder() {
 				var newHtml = response.data.map(d => {
 					var count = localStorage.getItem((d.id).toString())
 					var total_price = d.price * count
+					console.log(d.name)
 					return  `<tr>
 								  <th scope="row">
 									<div class="p-2">
