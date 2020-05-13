@@ -1,14 +1,15 @@
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
 
-from order.models import Order
+
+from order.models import Order, OrderedProducts
 from user.models import Card
 #from user.models import Customer       #þarf að laga tengingu
 
 class PersonalInfoOrder(ModelForm):
     class Meta:
         model = User
-        exclude = [ 'id', 'last_login', 'date_joined', 'password', 'is_superuser', 'username', 'is_active', 'is_staff', 'groups', 'user_permissions' ]
+        exclude = [ 'id']
         widgets = {
             'first_name': widgets.TextInput(attrs={'class': 'form-control', }),
             'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -32,13 +33,11 @@ class PaymentInfo(ModelForm):
 
 def CreateOrder(request):
     class Meta:
-        model = Order
-        exclude = [ 'id', 'last_login', 'date_joined', 'password', 'is_superuser', 'username', 'is_active', 'is_staff', 'groups', 'user_permissions' ]
+        model = OrderedProducts
+        exclude = ['id']
         widgets = {
-            'first_name': widgets.TextInput(attrs={'class': 'form-control', }),
-            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'email': widgets.TextInput(attrs={'class': 'form-control'}),
-            'address': widgets.TextInput(attrs={'class': 'form-control'}),
-            'zip_code': widgets.TextInput(attrs={'class': 'form-control'}),
-            'country': widgets.TextInput(attrs={'class': 'form-control'})
+            'product': widgets.TextInput(attrs={'class': 'Product', }),
+            'quantity': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'order': widgets.TextInput(attrs={'class': 'Order'}),
+
         }
