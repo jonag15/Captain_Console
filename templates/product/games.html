@@ -15,19 +15,14 @@
   </div>
 </div>
 
-{% for subcategory in subcategories%}
+{% for subcategory in product.sub_type_id %}
 <div>
 
-<a class="posts" data-category="cat_1" href="{% url 'sub_category' subcategory.id %}">{{ subcategory.name }}></a>
+<a class="posts" data-category="cat_1" href="#">{{ subcategory.id }}></a>
 
 </div>
-{% endfor %}
-{#    {% for subcategory in subcategories%}#}
-{##}
-{#    <a class="dropdown-item" href="{% url 'sub_category' pk=subcategory.id %}">{{ subcategory.name }}</a>#}
-{##}
-{#    {% endfor %}#}
-{#    </div>#}
+    {% endfor %}
+
 
 
 {# Flokkar  #}

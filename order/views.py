@@ -1,4 +1,6 @@
 import json
+
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -47,35 +49,37 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        products = [{'test1': 2, 'test2': 3}]
-        return JsonResponse({'data': products})
+        products ={}
+        order_json = json.loads(request.POST['product_form'])
+        for key, value in order_json.items():
+            products[key] = value
+        #products = [{'test1': 2, 'test2': 3}]
+        return JsonResponse({'data': order_json})
     elif request.method == 'POST':
         return "placeholder"
     return render(request, 'order/overview.html')
 
-  #
-    #     print('order/payment - POST')
-    #
-    # return render(request, 'order/payment.html', {
-    #     'form': PersonalInfo(instance=user),
-    #     'address': AddressInfo(instance=address),
-    #     'carddetails': PaymentInfo(instance=paymentInfo)
-    # })
 
+
+#@login_required
 def complete(request):
+    # form_order = CreateOrder(data=request.POST)
+    # if form_order.is_valid():
+    #     form_order.save()
+    #     return redirect('order_complete')
     return render(request, 'order/order_complete.html')
 
-def create_new_order(request):
-    if request.method == 'POST':
-        form_order = CreateOrder(data=request.POST)
-        if form_order.is_valid():
-            form_order.save()
-            form_user = PersonalInfoOrder(data=request.POST)
-            if form_user.is_valid():
-                form_user.save()
-            #order_info = Order(image=request.POST['image'], product=product)
-            return redirect('order_complete')
-
-    return render(request, 'order/order_complete.html', {
-        'form_order': form_order
-    })
+# def create_new_order(request):
+#     if request.method == 'POST':
+#         form_order = CreateOrder(data=request.POST)
+#         if form_order.is_valid():
+#             form_order.save()
+#             form_user = PersonalInfoOrder(data=request.POST)
+#             if form_user.is_valid():
+#                 form_user.save()
+#             #order_info = Order(image=request.POST['image'], product=product)
+#             return redirect('order_complete')
+#
+#     return render(request, 'order/order_complete.html', {
+#         'form_order': form_order
+#     })
