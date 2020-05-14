@@ -30,6 +30,8 @@ class OrderedProducts(models.Model):
     quantity = models.IntegerField()
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.product
 
 # auth_user/user er user sem er með aðgang að kerfinu og getur skráð sig inn.
 class AllUserOrders (models.Model):

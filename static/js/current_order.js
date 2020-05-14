@@ -308,13 +308,17 @@ $(document).ready(function() {
 		var csrftoken = getCookie('csrftoken');
 		var product_form = {};
 		var i = 0;
+		var id;
 		for (i = 0; i <= localStorage.length - 1; i++) {
 			if (parseInt(localStorage.key(i)) !== NaN) {
 				if (parseInt(localStorage.key(i)) != null) {
+
 					product_form[parseInt(localStorage.key(i))] = parseInt(localStorage.getItem(localStorage.key(i)))
 				};
 			};
 		};
+
+
 		console.log(product_form)
 		$.ajaxSetup({
 			beforeSend: function (xhr, settings) {
@@ -327,7 +331,7 @@ $(document).ready(function() {
 			url: '/order/payment/overview',
 			type: 'POST',
 			ContentType: 'application/json',
-			data: {'product_form': JSON.stringify({paramName: product_form})},
+			data: {'product_form': JSON.stringify(product_form)},
 			success: function (response) {
 				var url = window.location.href
 				console.log(url + '/complete')

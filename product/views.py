@@ -9,6 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 
+
 # Create your views here.
 def index(request):
     if 'search_filter' in request.GET:
@@ -178,4 +179,10 @@ def get_products_to_choose_from(request):
     return render(request, 'product/choose_product_update.html', context)
 
 
+
+# def get_subcategory_games(request, id):
+#    product = Product.objects.all()
+#    subcategories = ProductSubTypes.objects.all()
+#    return render(request, 'product/games.html', {'subcategories': subcategories,
+#                                                  'products': product})
 

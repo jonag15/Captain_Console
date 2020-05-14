@@ -11,7 +11,7 @@ class PersonalInfoOrder(ModelForm):
         model = User
         exclude = [ 'id']
         widgets = {
-            'first_name': widgets.TextInput(attrs={'class': 'form-control', }),
+            'first_name': widgets.TextInput(attrs={'class': 'form-control' }),
             'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'email': widgets.TextInput(attrs={'class': 'form-control'}),
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -36,8 +36,8 @@ def CreateOrder(request):
         model = OrderedProducts
         exclude = ['id']
         widgets = {
-            'product': widgets.TextInput(attrs={'class': 'Product', }),
+            'product': widgets.TextInput(attrs={'class': 'Product'}),
             'quantity': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'order': widgets.TextInput(attrs={'class': 'Order'}),
+
 
         }

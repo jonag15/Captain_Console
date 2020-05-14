@@ -7,8 +7,7 @@
       <div class="col-lg-4">
         <form>
           <div class="form-group">
-              <!-- Vantar að finna afhverju í ansk ég get ekki flett upp í user.userimage.image -->
-              <img class="profile-image" src="{{ userimage.image }}" width="300px" height="400px"><br><br>
+              <img class="profile-image" src="{{ user.userimage_set.first.image }}" width="300px" height="400px" style="border-radius: 5%"><br><br>
               <a class="btn btn-secondary" href="{% url 'picture' %}" role="button">Breyta mynd</a>
           </div>
         </form>
@@ -18,8 +17,21 @@
         <h4>Persónuupplýsingar</h4><br>
         <form class="form form-horizontal" method="POST">
             {% csrf_token %}
-            {{ form }}
-            {{ address }} <br>
+            {{ form.first_name }}
+            <small class="form-text text-muted">Fornafn</small><br>
+            {{ form.last_name }}
+            <small class="form-text text-muted">Eftirnafn.</small><br>
+            {{ form.email }}
+            <small class="form-text text-muted">Email.</small><br>
+            {{ address.address }}
+            <small class="form-text text-muted">Heimilisfang.</small><br>
+            {{ address.zip_code }}
+            <small class="form-text text-muted">Póstnúmer.</small><br>
+            {{ address.city }}
+            <small class="form-text text-muted">Borg.</small><br>
+            {{ address.country }}
+            <small class="form-text text-muted">Land.</small><br><br>
+
             <a class="btn btn-secondary" href="{% url 'profile' %}" role="button">Til baka</a>
             <input class="btn btn-primary" type="submit" value="Vista">
         </form>
