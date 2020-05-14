@@ -48,7 +48,10 @@ INSERT INTO product_product(name, price, description, quantity, on_sale, age_lim
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Winter games', 1599, 'Tölvuleikur fyrir alla tölvuleikjaáhugamenn', 9, false, 1, 1, 1, 1, 1);
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Summer games', 1599, 'Tölvuleikur fyrir alla tölvuleikjaáhugamenn', 9, false, 1, 1, 1, 1, 1);
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Super cycle', 1599, 'Tölvuleikur fyrir alla tölvuleikjaáhugamenn', 9, false, 1, 1, 1, 1, 1);
-
+INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, status_id, manufacturer_id, sub_type_id) VALUES('Intel Pentium Gold G5400 3.7GHz 1151 14nm 4MB', 15000, 'Intel Pentium Gold með 2 kjarna og 4 þræði í heild.', 50, false, 1, 4, 1, 10, 1);
+INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, status_id, manufacturer_id, sub_type_id) VALUES('AM4 A10-9700 3.5GHz/3.8GHz', 18500, 'AM4 A10-9700 með Radeon R7 Skjákorti innbyggðu', 50, false, 1, 4, 1, 10, 1);
+INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, status_id, manufacturer_id, sub_type_id) VALUES('Intel Retail Vifta 1150/1155/1156', 2350, 'Intel Stock vifta fyrir 115X 1156/1155/1150', 50, false, 1, 4, 1, 10, 11);
+INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, status_id, manufacturer_id, sub_type_id) ALUES('Noctua NF-P12 redux', 3600, 'Vifta hönnuð með það í huga að vera notuð á kæliturna eða vatnskælingar þar sem aukinn þrýstingur skiptir máli. NF-P12 er ein af þeim viftum sem kom Noctua á kortið og var í miklu uppáhaldi hjá notendum um heim allan.', 50, false, 1, 4, 1, 11, 11);
 
 
 INSERT INTO product_productimage(image, product_id) VALUES('https://herocity.de/is/wp-content/uploads/2018/08/x_jpa78254-800x800.jpg', 2);
@@ -67,6 +70,13 @@ INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com
 INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 15);
 INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 16);
 INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 17);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 18);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 19);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 20);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 21);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 22);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 23);
+INSERT INTO product_productimage(image, product_id) VALUES('https://i.pinimg.com/originals/5e/22/86/5e2286e02a8d3a65558ad3adf7534670.jpg', 24);
 
 INSERT INTO product_searchhistory(search_date, product_id, profile_id) VALUES('06-may-2020', 2, 1);
 INSERT INTO product_searchhistory(search_date, product_id, profile_id) VALUES('06-may-2020', 5, 1);
