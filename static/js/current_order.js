@@ -260,9 +260,11 @@ $(document).ready(function() {
 			if ( parseInt(localStorage.key(i)) !== NaN)  {
 				if (parseInt(localStorage.key(i)) != null) {
 					orderList.push(parseInt(localStorage.key(i)));
-				};
-			};
+				}
+			}
 		};
+
+
 		$.ajaxSetup({
     	beforeSend: function(xhr, settings) {
         	if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -304,20 +306,24 @@ $(document).ready(function() {
 	$('#order_confirmed').on('click', function () {
 		console.log("clicked")
 		document.getElementById("user_info").submit();
-        document.getElementById("card_info").submit();
+		document.getElementById("card_info").submit();
 		var csrftoken = getCookie('csrftoken');
 		var product_form = {};
 		var i = 0;
 		var id;
 		for (i = 0; i <= localStorage.length - 1; i++) {
-			if (parseInt(localStorage.key(i)) !== NaN) {
+			if (localStorage.key(i) === 'total_price') {
+				console.log(localStorage.key(i))
+				console.log(parseInt(localStorage.getItem(localStorage.key(i))))
+				product_form[localStorage.key(i)] = parseInt(localStorage.getItem(localStorage.key(i)))
+			}
+			else if (parseInt(localStorage.key(i)) !== NaN) {
 				if (parseInt(localStorage.key(i)) != null) {
 
 					product_form[parseInt(localStorage.key(i))] = parseInt(localStorage.getItem(localStorage.key(i)))
-				};
-			};
-		};
-
+				}
+			}
+		}
 
 		console.log(product_form)
 		$.ajaxSetup({
