@@ -67,19 +67,16 @@ def overview(request):
 
 def create_new_order(request):
     if request.method == 'POST':
-        form_user = PersonalInfoOrder(data=request.POST)
         form_order = CreateOrder(data=request.POST)
-        if form_order.is_valid() & form_user.is_valid():
-            order = form_order.save()
-
-            personal_info = form_user.save()
+        if form_order.is_valid():
+            form_order.save()
+            form_user = PersonalInfoOrder(data=request.POST)
+            if form_user.is_valid():
+                form_user.save()
             #order_info = Order(image=request.POST['image'], product=product)
-
             return redirect('order_complete')
-        else:
-            form_order = CreateOrder()
-            form_user = PersonalInfoOrder()
+
+
     return render(request, 'order/order_complete.html', {
-        'form_user': form_user,
         'form_order': form_order
     })
