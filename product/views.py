@@ -69,7 +69,10 @@ def get_product_by_id(request, id):
 #All games views
 def get_all_games(request):
     context = {'products': Product.objects.filter(category_id=1)}
-    return render(request, 'product/games.html', context)
+    return render(request, 'product/games.html', {
+        'products': Product.objects.filter(category_id=1),
+        'categories': Product.objects.filter(category_id=1)
+    })
 
 
 def games_by_name(request):
