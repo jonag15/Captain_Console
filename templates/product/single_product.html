@@ -5,7 +5,7 @@
       <div class="card-body">
 
         <div class="productInfo">
-            <img class="image-product card-img-top" src="{{ product.productimage_set.first.image }}">
+            <img class="image-product card-img-top" width="300px" height="250px" src="{{ product.productimage_set.first.image }}">
 
             <h4 class="card-text productInfo">{{ product.name }}</h4>
             <h4 class="card-text productInfo">{{ product.price }}kr</h4>
@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary btn-order" onclick="AddItem({{ product.id }})">Setja í körfu</button>
-                <a class="btn btn-primary btn-sm btn-outline-secondary btn-info" href="{{ product.id }}" role="button">Upplýsingar</a>
+                <a class="btn btn-primary btn-sm btn-outline-secondary btn-info" href="{% url 'product_description' product.id %}" role="button">Upplýsingar</a>
             </div>
       </div>
     </div>

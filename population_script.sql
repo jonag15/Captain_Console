@@ -29,8 +29,10 @@ INSERT INTO product_productsubtypes(name) VALUES('Ævintýraleikir');
 
 INSERT INTO product_productmanufacturer(name) VALUES('Sony');
 INSERT INTO product_productmanufacturer(name) VALUES('Nitendo');
+INSERT INTO product_productmanufacturer(name) VALUES('Microsoft');
 
 
+INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Microsoft Xbox One Stereo leikjaheyrnartól', 25000, 'Með Microsoft Xbox One Stereo leikjaheyrnartólunum getur þú sokkið þér í heimi tölvuleikja. Höfuðtólið býður upp á steríóhljóð, einstefnu hljóðnema og hentar vel til að spila tölvuleiki, hvort sem það er í einspilun eða í co-op leikjum.', 5, false, 1, 3, 3, 1, 1);
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Super Mario Bros', 1999, 'Super Mario Bros er fyrsti Super Mario Bros tölvuleikurinn. Hann kom út árið 1985 á NES (Nintendo Entertainment System).', 5, false, 1, 1, 1, 1, 1);
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('Commando', 1299, 'Tölvuleikur fyrir alla tölvuleikjaáhugamenn', 10, false, 1, 1, 1, 1, 1);
 INSERT INTO product_product(name, price, description, quantity, on_sale, age_limit_id, category_id, manufacturer_id, status_id, sub_type_id) VALUES('King kong', 1599, 'King Kong tölvuleikurinn er gerður eftir myndinni um King Kong sem Peter Jackson leikstýrir. Leikurinn var unnin í nánu samstarfi við Peter Jackson og tæknibrellufyrirtækið Weta Ltd. Í leiknum spilaru í fyrstu persónu sem Jack Driscoll en í þriðju persónu sem King Kong sjálfur. Leikurinn gerist aðalega á eyjunni Skull Island sem er þakinn dimmum skógum.  Upplifðu öll helstu atriðin úr myndinni í þessum frábæra leik', 8,  false, 1, 1, 1, 1, 1);

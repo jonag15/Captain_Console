@@ -150,14 +150,12 @@ function RemoveItem(product_id) {
 	}
 }
 
-function ClearAllItems() {
-	localStorage.clear();
-}
+$(document).ready(function() {
+	if (top.location.pathname === '/order/payment/complete') {
+		localStorage.clear()
+	}
+});
 
-function submitForms() {
-	document.getElementById("user_info").submit();
-    document.getElementById("card_info").submit();
-}
 
 $(document).ready(function() {
 
@@ -259,8 +257,10 @@ $(document).ready(function() {
 		var orderList = [];
 		var i = 0;
 		for (i = 0; i <= localStorage.length - 1; i++) {
-			if ( parseInt(localStorage.key(i)) !== NaN) {
-				orderList.push(parseInt(localStorage.key(i)));
+			if ( parseInt(localStorage.key(i)) !== NaN)  {
+				if (parseInt(localStorage.key(i)) != null) {
+					orderList.push(parseInt(localStorage.key(i)));
+				};
 			};
 		};
 		$.ajaxSetup({
@@ -298,4 +298,44 @@ $(document).ready(function() {
 			}
 		})
 	}
+});
+
+$(document).ready(function() {
+	$('#order_confirmed').on('click', function () {
+		console.log("clicked")
+		document.getElementById("user_info").submit();
+        document.getElementById("card_info").submit();
+		var csrftoken = getCookie('csrftoken');
+		var product_form = {};
+		var i = 0;
+		for (i = 0; i <= localStorage.length - 1; i++) {
+			if (parseInt(localStorage.key(i)) !== NaN) {
+				if (parseInt(localStorage.key(i)) != null) {
+					product_form[parseInt(localStorage.key(i))] = parseInt(localStorage.getItem(localStorage.key(i)))
+				};
+			};
+		};
+		console.log(product_form)
+		$.ajaxSetup({
+			beforeSend: function (xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+		$.ajax({
+			url: '/order/payment/overview',
+			type: 'POST',
+			ContentType: 'application/json',
+			data: {'product_form': JSON.stringify({paramName: product_form})},
+			success: function (response) {
+				var url = window.location.href
+				console.log(url + '/complete')
+				window.location.assign(url + '/complete')
+			},
+			error: function (xhr, status, error) {
+				// TODO: error message
+			}
+		});
+	});
 });
