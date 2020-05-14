@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User as AuthUser
+#from django_countries import Countries
 
 
 class Country(models.Model):
     name = models.CharField(max_length=255)
+    #name = models.
 
 
 # auth_user/user er user sem er með aðgang að kerfinu og getur skráð sig inn.
