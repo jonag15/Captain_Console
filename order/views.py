@@ -15,6 +15,9 @@ from user.models import Address
 from user.models import Card
 from product.models import Product
 from order.models import Order, OrderedProducts
+from django.views.decorators.csrf import csrf_protect
+
+
 
 # Create your views here.
 def index(request):
@@ -36,6 +39,7 @@ def index(request):
 def payment(request):
     return render(request, 'order/payment.html')
 
+@csrf_protect
 def overview(request):
     if 'orderList' in request.POST:
         order_list = []
@@ -50,22 +54,23 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        order_json = json.loads(request.POST['product_form'])
-        for key in order_json.keys():
-            if key != None:
+        #order_json = json.loads(request.POST['product_form'])
+        for item in 'product_form':
+            if item[0] == 'total_price':
+                order.total_price = item[1]
+            elif item[0] != 'NaN':
                 order = Order()
                 order.order_status = None
                 order.order_date = date.today()
-                order.total_price = key
                 order.delivery = None
                 if order.is_valid():
                     order.save()
         order_id = order.id
         ordered_products = OrderedProducts()
         #products ={}
-        for key, value in order_json.items():
-            ordered_products.product = key
-            ordered_products.quantity = value
+        for item in 'product_form':
+            ordered_products.product = item[0]
+            ordered_products.quantity = item[1]
             ordered_products.order = order_id
             ordered_products.save()
             #products[key] = value
