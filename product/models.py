@@ -19,7 +19,6 @@ class ProductType(models.Model):
 #Tengja saman type og subtype
 class ProductSubTypes(models.Model):
     name = models.CharField(max_length=255)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE )
 
     def __str__(self):
         return self.name

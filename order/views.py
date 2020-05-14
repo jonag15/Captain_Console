@@ -1,4 +1,6 @@
 import json
+from datetime import date
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -12,6 +14,10 @@ from user.forms.payment_info import PaymentInfo
 from user.models import Address
 from user.models import Card
 from product.models import Product
+from order.models import Order, OrderedProducts
+from django.views.decorators.csrf import csrf_protect
+
+
 
 # Create your views here.
 def index(request):
@@ -33,6 +39,7 @@ def index(request):
 def payment(request):
     return render(request, 'order/payment.html')
 
+@csrf_protect
 def overview(request):
     if 'orderList' in request.POST:
         order_list = []
@@ -47,35 +54,56 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        products = [{'test1': 2, 'test2': 3}]
-        return JsonResponse({'data': products})
+        #order_json = json.loads(request.POST['product_form'])
+        for item in 'product_form':
+            if item[0] == 'total_price':
+                order.total_price = item[1]
+            elif item[0] != 'NaN':
+                order = Order()
+                order.order_status = None
+                order.order_date = date.today()
+                order.delivery = None
+                if order.is_valid():
+                    order.save()
+        order_id = order.id
+        ordered_products = OrderedProducts()
+        #products ={}
+        for item in 'product_form':
+            ordered_products.product = item[0]
+            ordered_products.quantity = item[1]
+            ordered_products.order = order_id
+            ordered_products.save()
+            #products[key] = value
+        #products = [{'test1': 2, 'test2': 3}]
+        #return JsonResponse({'data': order_json})
+        return render(request, 'order/order_complete.html', {
+            'form': order
+        })
     elif request.method == 'POST':
         return "placeholder"
     return render(request, 'order/overview.html')
 
-  #
-    #     print('order/payment - POST')
-    #
-    # return render(request, 'order/payment.html', {
-    #     'form': PersonalInfo(instance=user),
-    #     'address': AddressInfo(instance=address),
-    #     'carddetails': PaymentInfo(instance=paymentInfo)
-    # })
 
+
+#@login_required
 def complete(request):
+    # form_order = CreateOrder(data=request.POST)
+    # if form_order.is_valid():
+    #     form_order.save()
+    #     return redirect('order_complete')
     return render(request, 'order/order_complete.html')
 
-def create_new_order(request):
-    if request.method == 'POST':
-        form_order = CreateOrder(data=request.POST)
-        if form_order.is_valid():
-            form_order.save()
-            form_user = PersonalInfoOrder(data=request.POST)
-            if form_user.is_valid():
-                form_user.save()
-            #order_info = Order(image=request.POST['image'], product=product)
-            return redirect('order_complete')
-
-    return render(request, 'order/order_complete.html', {
-        'form_order': form_order
-    })
+# def create_new_order(request):
+#     if request.method == 'POST':
+#         form_order = CreateOrder(data=request.POST)
+#         if form_order.is_valid():
+#             form_order.save()
+#             form_user = PersonalInfoOrder(data=request.POST)
+#             if form_user.is_valid():
+#                 form_user.save()
+#             #order_info = Order(image=request.POST['image'], product=product)
+#             return redirect('order_complete')
+#
+#     return render(request, 'order/order_complete.html', {
+#         'form_order': form_order
+#     })

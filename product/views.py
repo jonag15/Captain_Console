@@ -70,7 +70,10 @@ def get_product_by_id(request, id):
 #All games views
 def get_all_games(request):
     context = {'products': Product.objects.filter(category_id=1)}
-    return render(request, 'product/games.html', context)
+    return render(request, 'product/games.html', {
+        'products': Product.objects.filter(category_id=1),
+        'categories': Product.objects.filter(category_id=1)
+    })
 
 
 def games_by_name(request):
@@ -176,4 +179,10 @@ def get_products_to_choose_from(request):
     return render(request, 'product/choose_product_update.html', context)
 
 
+
+# def get_subcategory_games(request, id):
+#    product = Product.objects.all()
+#    subcategories = ProductSubTypes.objects.all()
+#    return render(request, 'product/games.html', {'subcategories': subcategories,
+#                                                  'products': product})
 
