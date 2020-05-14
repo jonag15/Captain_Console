@@ -1,15 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from django.db.models import DateField
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product, ProductType, ProductSubTypes
 from product.models import ProductImage
 from product.models import SearchHistory
 from datetime import date
-from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -35,9 +32,8 @@ def index(request):
     return render(request, 'product/index.html', context)
 
 def index_by_name(request):
-    #context1 = {'categories': ProductType.objects.all()}
-    #context = {'categories': Product.category.objects.order_by('product__name') }
-    context = {'products': Product.objects.filter(category_id=1).order_by('name')}
+
+    context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'product/index.html', context)
 
 def index_by_price(request):
@@ -45,9 +41,23 @@ def index_by_price(request):
     return render(request, 'product/index.html', context)
 
 
-def info_index(request):
-   context = {'products': Product.objects.all()}
-   return render(request, 'product/info.html', context)
+def info_index(request, id):
+
+
+        return render(request, 'product/info.html', {
+            'product': get_object_or_404(Product, pk=id),
+            'category': get_object_or_404(ProductType, pk=id)
+        })
+    # categories = {
+    #     "games": ProductType.objects.filter(id=1),
+    #     "computers": ProductType.objects.filter(id=2),
+    #     "accessory": ProductType.objects.filter(id=3),
+    #     "spareparts": ProductType.objects.filter(id=4),
+    #     }
+    #'categories': ProductType.objects.all()
+   # context = {'products': Product.objects.all(),
+   #            'categories': ProductType.objects.all()}
+   # return render(request, 'product/info.html', context)
 
 # /product/1
 def get_product_by_id(request, id):
@@ -71,29 +81,10 @@ def games_by_price(request):
     return render(request, 'product/games.html', context)
 
 
-
-def games_by_name(request):
-    context = {'product': Product.objects.filter(category_id=1).order_by('name')}
-    return render(request, 'product/games.html', context)
-
-def games_by_price(request):
-    context = {'products': Product.objects.filter(category_id=1).order_by('price')}
-    return render(request, 'product/games.html', context)
-
 # All computer views
 def get_all_computers(request):
     context = {'products': Product.objects.filter(category_id=2)}
     return render(request, 'product/computers.html', context)
-
-
-def computers_by_name(request):
-    context = {'products': Product.objects.filter(category_id=2).order_by('name')}
-    return render(request, 'product/computers.html', context)
-
-def computers_by_price(request):
-    context = {'products': Product.objects.filter(category_id=2).order_by('price')}
-    return render(request, 'product/computers.html', context)
-
 
 
 def computers_by_name(request):
@@ -118,19 +109,18 @@ def accessory_by_price(request):
     context = {'products': Product.objects.filter(category_id=3).order_by('price')}
     return render(request, 'product/accessory.html', context)
 
+#All spare parts views
 def get_all_spareparts(request):
-    # if index_by_name:
-    #     return render(request, 'product/index.html', {'products': Product.objects.filter(category_id=4).order_by('name')} )
     context = {'products': Product.objects.filter(category_id=4)}
-    return render(request, 'product/index.html', context)
+    return render(request, 'product/spere_parts.html', context)
 
 def spareparts_by_name(request):
     context = {'products': Product.objects.filter(category_id=4).order_by('name')}
-    return render(request, 'product/index.html', context)
+    return render(request, 'product/spere_parts.html', context)
 
 def spareparts_by_price(request):
     context = {'products': Product.objects.filter(category_id=4).order_by('price')}
-    return render(request, 'product/index.html', context)
+    return render(request, 'product/spere_parts.html', context)
 
 #Get all products
 def get_products(request):
@@ -185,30 +175,4 @@ def get_products_to_choose_from(request):
     return render(request, 'product/choose_product_update.html', context)
 
 
-
-#
-# def get_queryset_of_subtype(request):
-#     """
-#     Optionally restricts the returned purchases to a given user,
-#     by filtering against a `username` query parameter in the URL.
-#     """
-#     queryset = Product.objects.all()
-#     subtype = Product.sub_type.objects()
-#     for x in subtype:
-#
-#         queryset = queryset.filter(sub_type_id=x)
-#     return render(request, 'product/games.html', queryset)
-
-def get_subtypes(request):
-    return render(request, 'index.html', {})
-
-
-def single_slug(request, single_slug):
-    matching_product = []
-    product_subtype = [p.sub_type for p in Product.objects.all() ]
-    if single_slug in product_subtype:
-        matching_product.append(single_slug)
-        return render(request, "index.html", {
-
-        })
 
