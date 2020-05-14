@@ -13,9 +13,10 @@ from user.forms.payment_info import PaymentInfo
 #from user.models import Customer
 from user.models import Address
 from user.models import Card
+from order.models import OrderStatus, DeliveryType
 from product.models import Product
 from order.models import Order, OrderedProducts
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
 
@@ -39,9 +40,12 @@ def index(request):
 def payment(request):
     return render(request, 'order/payment.html')
 
-@csrf_protect
+
+@csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
+    print("Byrja")
     if 'orderList' in request.POST:
+        print("orderlist")
         order_list = []
         order_json = json.loads(request.POST['orderList'])
         for id in order_json['paramName']:
@@ -51,28 +55,39 @@ def overview(request):
             'id': x.id,
             'name': x.name,
             'price': x.price,
+
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
+        print("product form")
         #order_json = json.loads(request.POST['product_form'])
         for item in 'product_form':
+            order = Order()
+            print("for loopa byrjuð")
             if item[0] == 'total_price':
-                order.total_price = item[1]
+                order.total_price = 1234 #item[1]
+                print("total price")
             elif item[0] != 'NaN':
-                order = Order()
-                order.order_status = None
+                print("item")
+                order.total_price = 1234    #Hér var eitthvað sem var á villu
+                order.order_status = OrderStatus(id=1) #Hér var eitthvað sem var á villu
                 order.order_date = date.today()
-                order.delivery = None
-                if order.is_valid():
-                    order.save()
+                order.delivery = DeliveryType(id=2) #Hér var eitthvað sem var á villu
+                #if order.is_valid():               # það var einhver villa hér, commentað út - Unnar 14.5
+                print("rétt fyrir Order save")
+                order.save()
+                print("Order saved")
         order_id = order.id
         ordered_products = OrderedProducts()
         #products ={}
         for item in 'product_form':
-            ordered_products.product = item[0]
-            ordered_products.quantity = item[1]
-            ordered_products.order = order_id
+            print("producr form byrjun")
+            ordered_products.product = Product.objects.first()  #Hér var eitthvað sem var á villu
+            ordered_products.quantity = 123 #Hér var eitthvað sem var á villu
+            ordered_products.order = Order.objects.last()   #Hér var eitthvað sem var á villu
+            print("Rétt fyrir products save")
             ordered_products.save()
+            print("Orderer products saved")
             #products[key] = value
         #products = [{'test1': 2, 'test2': 3}]
         #return JsonResponse({'data': order_json})
@@ -80,7 +95,7 @@ def overview(request):
             'form': order
         })
     elif request.method == 'POST':
-        return "placeholder"
+        return render(request, 'product/index.html')
     return render(request, 'order/overview.html')
 
 
