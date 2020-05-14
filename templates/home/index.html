@@ -1,7 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    
-    <h2 id="home">Home view</h2>
+
+    <span class="col-lg-12">
+        <div class="album py-5 bg-light row">
+            <div class="container">
+            <div class="row product" id="product">
+            <img src="https://www.todayifoundout.com/wp-content/uploads/2013/08/pacman.jpg" width="300px" height="300px alt="Opnumynd" />
+
+            <div class="col-md-6">
+
+            <h6>NÝTT!</h6>
+            <h1>PACKMAN</h1>
+            <p>Hinn sívinsæli Packman leikur er kominn aftur í verslanir</p>
+
+            <a class="btn btn-primary btn-lg order_btn" href="{% url 'product_games' %}" role="button">Nánar</a>
+            </div>
+            </div>
+            </div>
+        </div>
+    </span>
+    <span class="col-lg-12">
+        <div class="album py-5 bg-light row">
+            <div class="container">
+            <div class="row product" id="product">
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Jetpac_Coverart.png" width="300px" height="300px alt="Opnumynd" />
+
+            <div class="col-md-6">
+
+            <h6>VÆNTANLEGT!</h6>
+            <h1>JETPAC</h1>
+                <p>Tölvuleikur sem fyrst kom fram 1983 fyrir ZX Spectrum og VIC-20 en er nún væntanlegur fyrir xbox Series X</p>
+
+            <a class="btn btn-primary btn-lg order_btn" href="{% url 'product_games' %}" role="button">Nánar</a>
+            </div>
+            </div>
+            </div>
+        </div>
+    </span>
+
+
 
 {% endblock %}
