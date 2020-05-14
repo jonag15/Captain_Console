@@ -8,32 +8,31 @@
     </div>
     <div class="row"><br>
 
-        <div class="col-lg-4">
-                <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                          <th scope="col" class="border-0 bg-light">
-                            <div class="p-2 px-3 text-uppercase">Vörur</div>
-                          </th>
-                          <th scope="col" class="border-0 bg-light">
-                            <div class="py-2 text-uppercase">Verð</div>
-                          </th>
-                          <th scope="col" class="border-0 bg-light">
-                            <div class="py-2 text-uppercase">Fjöldi</div>
-                          </th>
-                        </tr>
-                    </thead>
-                    <tbody class="order_products_overview">
-                    {% for product in products %}
-                        {% include 'order/single_product.html' with product=product %}
-                    {% endfor %}
-            </tbody>
-                </table>
+        <div class="col-lg-5">
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="p-2 px-3 text-uppercase">Vörur</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Verð</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Fjöldi</div>
+                      </th>
+                    </tr>
+                </thead>
+                <tbody class="order_products_overview">
+                {% for product in products %}
+                    {% include 'order/single_product.html' with product=product %}
+                {% endfor %}
+                </tbody>
+            </table>
             </div>
         </div>
 
-        <div class="col-lg-1"></div>
       <div class="col-lg-3">
       <h4>Upplýsingar</h4><br>
         <form id="user_info" class="form form-horizontal" method="POST" action="{% url 'order_overview' %}">
@@ -81,7 +80,7 @@
         <div class="col-lg-5 text-center align-self-end"></div>
         <div class="col-lg-4 text-center align-self-end">
             <a class="btn btn-primary btn-lg order_btn" href="{% url 'order_payment' %}" role="button">Fyrra skref</a>
-            <a class="btn btn-success btn-lg order_btn" href="{% url 'order_complete' %}" role="button" onclick="submitForms()">Ljúka pöntun</a>
+            <button id="order_confirmed" class="btn btn-success btn-lg order_btn" type="button"">Ljúka pöntun</button>
         </div>
     </div>
 {% endblock %}
