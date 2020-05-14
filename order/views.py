@@ -1,5 +1,5 @@
 import json
-
+from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -14,6 +14,7 @@ from user.forms.payment_info import PaymentInfo
 from user.models import Address
 from user.models import Card
 from product.models import Product
+from order.models import Order, OrderedProducts
 
 # Create your views here.
 def index(request):
@@ -49,12 +50,30 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        products ={}
         order_json = json.loads(request.POST['product_form'])
+        for key in order_json.keys():
+            if key != None:
+                order = Order()
+                order.order_status = None
+                order.order_date = date.today()
+                order.total_price = key
+                order.delivery = None
+                if order.is_valid():
+                    order.save()
+        order_id = order.id
+        ordered_products = OrderedProducts()
+        #products ={}
         for key, value in order_json.items():
-            products[key] = value
+            ordered_products.product = key
+            ordered_products.quantity = value
+            ordered_products.order = order_id
+            ordered_products.save()
+            #products[key] = value
         #products = [{'test1': 2, 'test2': 3}]
-        return JsonResponse({'data': order_json})
+        #return JsonResponse({'data': order_json})
+        return render(request, 'order/order_complete.html', {
+            'form': order
+        })
     elif request.method == 'POST':
         return "placeholder"
     return render(request, 'order/overview.html')

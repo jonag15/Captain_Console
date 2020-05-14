@@ -38,6 +38,7 @@ def CreateOrder(request):
         widgets = {
             'product': widgets.TextInput(attrs={'class': 'Product'}),
             'quantity': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'order' : widgets.NumberInput(attrs={'class': 'Order'})
 
 
         }
