@@ -4,7 +4,7 @@ from user.models import Card
 class PaymentInfo(ModelForm):
     class Meta:
         model = Card
-        exclude = []
+        exclude = [ 'user' ]
         widgets = {
             'card_number': widgets.TextInput(attrs={'class': 'form-control', 'label':'blabla'}),
             'valid_month': widgets.NumberInput(attrs={'class': 'form-control'}),

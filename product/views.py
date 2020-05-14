@@ -9,6 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 
+
 # Create your views here.
 def index(request):
     if 'search_filter' in request.GET:

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class ProfileForm(ModelForm):
     class Meta:
         model = UserImage
-        exclude = [ 'id', 'customer_id', 'customer' ]
+        exclude = [ 'id', 'user' ]
         widgets = {
             'image': widgets.TextInput(attrs={'class': 'form-control'})
         }
