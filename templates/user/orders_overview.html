@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <span class="col-md-9">
+        <div class="container justify-content-center align-items-center">
+            {% for product in products %}
+                <div class="row mb-4">
+                    <div class="col-4 themed-grid-col">{{ product.name }}</div>
+                    <div class="col-4 themed-grid-col">{{ product.price }}kr</div>
+                    <div class="col-4 themed-grid-col">
+                        <a class="btn btn-sm btn-info" style="width: 50%;display: grid;"
+                       href="{% url 'update_product' product.id %}" role="button">Breyta vöru</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="btn btn-secondary" href="{% url 'admin_option' %}" role="button">Til baka</a>
+    </span>
+
+{% endblock %}

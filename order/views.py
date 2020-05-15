@@ -43,9 +43,9 @@ def payment(request):
 
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
-    print("Byrja")
+    #print("Byrja")
     if 'orderList' in request.POST:
-        print("orderlist")
+        #print("orderlist")
         order_list = []
         order_json = json.loads(request.POST['orderList'])
         for id in order_json['paramName']:
@@ -58,12 +58,48 @@ def overview(request):
 
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
-    elif 'product_form' in request.POST:
-        complete(request)
+    if 'product_form' in request.POST:
+        order_json = json.loads(request.POST['product_form'])
+
+        order = Order()
+        for key, value in order_json.items():
+            if key == 'total_price':
+                order.total_price = value
+                print("total price")
+        order.order_status = OrderStatus(id=1)
+        order.order_date = date.today()
+        order.delivery = DeliveryType(id=2)
+        print("rétt fyrir Order save")
+        order.save()
+        print("Order saved")
+        order_id = order.id
+        print("producr form byrjun")
+        for key, value in order_json.items():
+            if key != 'NaN' and value != 'NaN' and key != 'total_price':
+                ordered_products = OrderedProducts()
+                ordered_products.product_id = key
+                ordered_products.quantity = value
+                ordered_products.order_id = order_id
+                ordered_products.save()
+        print("product form")
+        return render(request.GET, 'order_complete', {
+            #'order': Order(order),
+            #'ordered_product': OrderedProducts(OrderedProducts.objects.get(id= order_id))
+
+        })
+        #products = [{'test1': 2, 'test2': 3}]
+        #return render(request, 'order/order_complete.html')
+        #return JsonResponse({'data': products})
+        #complete(request)
+
+
+        #return redirect('order_complete')
+        #return render(request, 'product/order_complete.html', {})
+
         # products = [{'test1': 2, 'test2': 3}]
         #
         # return JsonResponse({'data': products})
-        #return render('order/order_complete.html', {
+        #return render(request, 'order/order_complete.html') #, {
         #     'form': order,
         #     'form_product': ordered_products
         # })
@@ -76,31 +112,34 @@ def overview(request):
 
 
 #@login_required
-def complete(request):
-    order_json = json.loads(request.POST['product_form'])
-    order = Order()
-    for key, value in order_json.items():
-        if key == 'total_price':
-            order.total_price = value
-            print("total price")
-    order.order_status = OrderStatus(id=1)
-    order.order_date = date.today()
-    order.delivery = DeliveryType(id=2)
-    print("rétt fyrir Order save")
-    order.save()
-    print("Order saved")
-    order_id = order.id
-    print("producr form byrjun")
-    for key, value in order_json.items():
-        if key != 'NaN' and value != 'NaN' and key != 'total_price':
-            ordered_products = OrderedProducts()
-            ordered_products.product_id = key
-            ordered_products.quantity = value
-            ordered_products.order_id = order_id
-            ordered_products.save()
-    print("product form")
-    products = [{'test1': 2, 'test2': 3}]
-
-    return JsonResponse({'data': products})
-    #return redirect('order_complete')
+# def complete(request):
+#     order_json = json.loads(request.POST['product_form'])
+#     order = Order()
+#     for key, value in order_json.items():
+#         if key == 'total_price':
+#             order.total_price = value
+#             print("total price")
+#     order.order_status = OrderStatus(id=1)
+#     order.order_date = date.today()
+#     order.delivery = DeliveryType(id=2)
+#     print("rétt fyrir Order save")
+#     order.save()
+#     print("Order saved")
+#     order_id = order.id
+#     print("producr form byrjun")
+#     for key, value in order_json.items():
+#         if key != 'NaN' and value != 'NaN' and key != 'total_price':
+#             ordered_products = OrderedProducts()
+#             ordered_products.product_id = key
+#             ordered_products.quantity = value
+#             ordered_products.order_id = order_id
+#             ordered_products.save()
+#     print("product form")
+#
+#     products = [{'test1': 2, 'test2': 3}]
+#
+#
+#
+#     return JsonResponse({'data': products})
+#     #return redirect('order_complete')
 
