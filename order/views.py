@@ -35,6 +35,7 @@ def index(request):
     return render(request, 'order/index.html')
 def payment(request):
     return render(request, 'order/payment.html')
+
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
     if request.method == 'POST':
@@ -105,12 +106,9 @@ def customer_info(request):
         customer.mail = request.POST['email']
         customer.address = request.POST['address']
         customer.zip_code = request.POST['zip_code']
-        customer.country = request.POST['country']
+        customer.country_id = request.POST['country']
         customer.save()
-        print("customer saved")
-        products = [{'test1': 2, 'test2': 3}]
-        print('Er að fara return json response i complete')
-        return JsonResponse({'data': products})
+
     else:
         print('Else í complete')
         return render(request, 'order/order_complete.html')

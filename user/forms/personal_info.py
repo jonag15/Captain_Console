@@ -1,6 +1,7 @@
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
 from user.models import Address
+from django import forms
 
 class PersonalInfo(ModelForm):
     class Meta:
@@ -20,5 +21,5 @@ class AddressInfo(ModelForm):
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
             'city': widgets.TextInput(attrs={'class': 'form-control'}),
             'zip_code': widgets.TextInput(attrs={'class': 'form-control'}),
-            'country': widgets.NumberInput(attrs={'class': 'form-control'})
+            'country': forms.Select(attrs={'class': 'Country'})
         }

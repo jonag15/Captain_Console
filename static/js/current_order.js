@@ -150,10 +150,12 @@ function RemoveItem(product_id) {
 	}
 }
 
+
 $(document).ready(function() {
-	if (top.location.pathname === '/order/payment/overview/complete') {
-		localStorage.clear()
-	}
+    $('#order_complete_btn').on( 'click',  function() {
+    	console.log("cancel")
+    	localStorage.clear();
+    });
 });
 
 $(document).ready(function() {
@@ -346,11 +348,9 @@ $(document).ready(function() {
 			data: {'product_form': JSON.stringify(product_form)},
 			success: function (response) {
 				response.data.map(d => {
+					console.log("hi")
 					send_user_info(d['order_id'])
 				})
-				/*var url = window.location.href
-				console.log(url + '/complete')
-				window.location.assign(url + '/complete')*/
 			},
 			error: function (xhr, status, error) {
 				// TODO: error message
@@ -362,4 +362,11 @@ $(document).ready(function() {
 function send_user_info(order_id) {
 	$('#order_id').val(order_id)
 	document.getElementById("user_info").submit();
+	setTimeout(redirect_complete(), 80000);
+}
+
+function redirect_complete() {
+	var url = window.location.href
+	console.log(url + '/complete')
+	window.location.assign(url + '/complete')
 }
