@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from product.forms.product_form import ProductCreateForm, ProductUpdateForm
-from product.models import Product, ProductType, ProductSubTypes
+from product.models import Product, ProductType, ProductSubTypes, ProductAgeLimit
 from product.models import ProductImage
 from product.models import SearchHistory
 from datetime import date
@@ -28,37 +28,90 @@ def index(request):
             'firstImage' : x.productimage_set.first().image
         } for x in Product.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': product})
+    elif 'type_filter' in request.GET:
+        type_filter = int(request.GET['type_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(sub_type=type_filter)]
+        return JsonResponse({'data': product})
 
-    context = {'products': Product.objects.all()}
-    return render(request, 'product/index.html', context)
+    elif 'age_filter' in request.GET:
+        age_filter = int(request.GET['age_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(age_limit=age_filter)]
+        return JsonResponse({'data': product})
+
+    return render(request, 'product/index.html', {
+        'products': Product.objects.all(),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def index_by_name(request):
-
-    context = {'products': Product.objects.all().order_by('name')}
-    return render(request, 'product/index.html', context)
+    if 'type_filter' in request.GET:
+        type_filter = int(request.GET['type_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(sub_type=type_filter)]
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        age_filter = int(request.GET['age_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(age_limit=age_filter)]
+        return JsonResponse({'data': product})
+    return render(request, 'product/index.html', {
+        'products': Product.objects.all().order_by('name'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def index_by_price(request):
-    context = {'products': Product.objects.all().order_by('price')}
-    return render(request, 'product/index.html', context)
+    if 'type_filter' in request.GET:
+        type_filter = int(request.GET['type_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(sub_type=type_filter)]
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        age_filter = int(request.GET['age_filter'])
+        product = [{
+            'id': x.id,
+            'name': x.name,
+            'price': x.price,
+            'firstImage': x.productimage_set.first().image
+        } for x in Product.objects.filter(age_limit=age_filter)]
+        return JsonResponse({'data': product})
+    return render(request, 'product/index.html', {
+        'products': Product.objects.all().order_by('price'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 
 def info_index(request, id):
-
 
         return render(request, 'product/info.html', {
             'product': get_object_or_404(Product, pk=id),
             'category': get_object_or_404(ProductType, pk=id)
         })
-    # categories = {
-    #     "games": ProductType.objects.filter(id=1),
-    #     "computers": ProductType.objects.filter(id=2),
-    #     "accessory": ProductType.objects.filter(id=3),
-    #     "spareparts": ProductType.objects.filter(id=4),
-    #     }
-    #'categories': ProductType.objects.all()
-   # context = {'products': Product.objects.all(),
-   #            'categories': ProductType.objects.all()}
-   # return render(request, 'product/info.html', context)
+
 
 # /product/1
 def get_product_by_id(request, id):
@@ -69,67 +122,407 @@ def get_product_by_id(request, id):
 
 #All games views
 def get_all_games(request):
-    context = {'products': Product.objects.filter(category_id=1)}
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=1)
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=1)
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
     return render(request, 'product/games.html', {
         'products': Product.objects.filter(category_id=1),
-        'categories': Product.objects.filter(category_id=1)
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
     })
 
 
 def games_by_name(request):
-    context = {'product': Product.objects.filter(category_id=1).order_by('name')}
-    return render(request, 'product/games.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=1).order_by('name')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=1).order_by('name')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/games.html', {
+        'products': Product.objects.filter(category_id=1).order_by('name'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def games_by_price(request):
-    context = {'products': Product.objects.filter(category_id=1).order_by('price')}
-    return render(request, 'product/games.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=1).order_by('price')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=1).order_by('price')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/games.html', {
+        'products': Product.objects.filter(category_id=1).order_by('price'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 
 # All computer views
 def get_all_computers(request):
-    context = {'products': Product.objects.filter(category_id=2)}
-    return render(request, 'product/computers.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=2)
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=2)
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/computers.html', {
+        'products': Product.objects.filter(category_id=2),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 
 def computers_by_name(request):
-    context = {'products': Product.objects.filter(category_id=2).order_by('name')}
-    return render(request, 'product/computers.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=2).order_by('name')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=2).order_by('name')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/computers.html', {
+        'products': Product.objects.filter(category_id=2).order_by('name'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def computers_by_price(request):
-    context = {'products': Product.objects.filter(category_id=2).order_by('price')}
-    return render(request, 'product/computers.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=2).order_by('price')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=2).order_by('price')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/computers.html', {
+        'products': Product.objects.filter(category_id=2).order_by('price'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 
 #All accessory views
 def get_all_accessory(request):
-    context = {'products': Product.objects.filter(category_id=3)}
-    return render(request, 'product/accessory.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=3)
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=3)
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/accessory.html', {
+        'products': Product.objects.filter(category_id=3),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def accessory_by_name(request):
-    context = {'products': Product.objects.filter(category_id=3).order_by('name')}
-    return render(request, 'product/accessory.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=3).order_by('name')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=3).order_by('name')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/accessory.html', {
+        'products': Product.objects.filter(category_id=3).order_by('name'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def accessory_by_price(request):
-    context = {'products': Product.objects.filter(category_id=3).order_by('price')}
-    return render(request, 'product/accessory.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=3).order_by('price')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=3).order_by('price')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/accessory.html', {
+        'products': Product.objects.filter(category_id=3).order_by('price'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 #All spare parts views
 def get_all_spareparts(request):
-    context = {'products': Product.objects.filter(category_id=4)}
-    return render(request, 'product/spere_parts.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=4)
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=4)
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/spere_parts.html', {
+        'products': Product.objects.filter(category_id=4),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def spareparts_by_name(request):
-    context = {'products': Product.objects.filter(category_id=4).order_by('name')}
-    return render(request, 'product/spere_parts.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=4).order_by('name')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=4).order_by('name')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/spere_parts.html', {
+        'products': Product.objects.filter(category_id=4).order_by('name'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 def spareparts_by_price(request):
-    context = {'products': Product.objects.filter(category_id=4).order_by('price')}
-    return render(request, 'product/spere_parts.html', context)
-
-#Get all products
-def get_products(request):
-    context = {'products': Product.objects.all()}
-    return render(request, 'product/single_product.html', context)
+    if 'type_filter' in request.GET:
+        product = []
+        type_filter = int(request.GET['type_filter'])
+        game_products = Product.objects.filter(category_id=4).order_by('price')
+        for game_product in game_products:
+            if game_product.sub_type_id == type_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    elif 'age_filter' in request.GET:
+        product = []
+        age_filter = int(request.GET['age_filter'])
+        game_products = Product.objects.filter(category_id=4).order_by('price')
+        for game_product in game_products:
+            if game_product.age_limit_id == age_filter:
+                product.append({
+                    'id': game_product.id,
+                    'name': game_product.name,
+                    'price': game_product.price,
+                    'firstImage': game_product.productimage_set.first().image
+                })
+        return JsonResponse({'data': product})
+    return render(request, 'product/spere_parts.html', {
+        'products': Product.objects.filter(category_id=4).order_by('price'),
+        'sub_types': ProductSubTypes.objects.all(),
+        'age_types': ProductAgeLimit.objects.all()
+    })
 
 @staff_member_required
 def create_new_product(request):

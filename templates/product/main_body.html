@@ -1,0 +1,28 @@
+{# Flokkar  #}
+<div class="row">
+        <div class="col-sm-3">
+        <h4>Flokkar</h4>
+                {% for sub_type in sub_types %}
+                    {% include 'product/single_subtype.html' with sub_type=sub_type %}
+                {% endfor %}
+
+        <h4 class="age_type">Aldursbil</h4>
+            {% for age_type in age_types %}
+                    {% include 'product/single_agetype.html' with sub_type=age_type %}
+            {% endfor %}
+        </div>
+
+    <div class="col-sm-9">
+            <div class="album py-5 bg-light row">
+                <div class="container">
+                    <div class="row product product_display" id="product">
+                        {% for product in products %}
+
+                            {% include 'product/single_product.html' with product=product %}
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

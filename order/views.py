@@ -49,7 +49,7 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        products ={}
+        products = {}
         order_json = json.loads(request.POST['product_form'])
         for key, value in order_json.items():
             products[key] = value
