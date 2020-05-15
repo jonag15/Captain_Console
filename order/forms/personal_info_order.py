@@ -1,10 +1,10 @@
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
-
+from django import forms
 
 from order.models import Order, OrderedProducts
 from user.models import Card
-#from user.models import Customer       #þarf að laga tengingu
+
 
 class PersonalInfoOrder(ModelForm):
     class Meta:
@@ -16,7 +16,7 @@ class PersonalInfoOrder(ModelForm):
             'email': widgets.TextInput(attrs={'class': 'form-control'}),
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
             'zip_code': widgets.TextInput(attrs={'class': 'form-control'}),
-            'country': widgets.TextInput(attrs={'class': 'form-control'})
+            'country': forms.Select(attrs={'class': 'Country'})
         }
 
 class PaymentInfo(ModelForm):
