@@ -2,84 +2,23 @@
 {% load static %}
 {% block content %}
 
+<div class="row">
+    <div class="col-sm-3">
+         <a class="btn btn-primary order_btn all_product_btn" href="{% url 'product_index' %}" role="button">Allar vörur</a>
+    </div>
+    <div class="col-sm-9">
+    <div class="dropdown sortedBy">
 
-<div class="dropdown sortedBy">
-
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Raða eftir</button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" methods="GET" href="{% url 'accessory_by_price' %}">Verð</a>
-    <a class="dropdown-item" methods="GET" href="{% url 'accessory_by_name' %}">Nafn</a>
-      <a class="dropdown-item" methods="GET" href="{% url 'product_index' %}">Allar vörur</a>
-
-  </div>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Raða eftir</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" methods="GET" href="{% url 'accessory_by_price' %}">Verð</a>
+        <a class="dropdown-item" methods="GET" href="{% url 'accessory_by_name' %}">Nafn</a>
+    </div>
+    </div>
+    </div>
 </div>
 
-
-
-{# Flokkar  #}
-<span class="col-md-2 align-top">
-    <div class="container categories row">
-    <div class="row justify-content-start">
-
-        <ul class="nav flex-column">
-            <div class="dropdown">
-                <li class="catacories"><h4>Flokkar</h4></li>
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-              <div class="custom-control custom-checkbox">
-              <input type="checkbox" id="check-box-games" name="data-brand" value="Tölvuleikir" class="custom-control-input customCheck1">
-              <label class="custom-control-label" for="customCheck1">Tölvuleikir</label>
-            </div>
-          </li>
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-                <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input customCheck1" >
-              <label class="custom-control-label" for="customCheck1">Leikjatölvur</label>
-            </div>
-          </li>
-
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-                <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input customCheck1" >
-              <label class="custom-control-label" for="customCheck1">Aukahlutir</label>
-            </div>
-          </li>
-          <li class="nav-item">
-              <hr id="lineBetween" style="width:100%;text-align:left;margin:0">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label" for="customCheck1 customCheck1">Varahlutir</label>
-            </div>
-          </li>
-            </div>
-        </ul>
-    </div>
-    </div>
-</span>
-
-<span class="col-md-9">
-  <div class="album py-5 bg-light row">
-    <div class="container">
-
-      <div class="row product" id="product">
-        {% for product in products %}
-      <div class="col-md-6">
-
-            {% include 'product/single_product.html' with product=product %}
-
-            </div>
-            {% endfor %}
-          </div>
-
-        </div>
-            </div>
-      </div>
-    </div>
-  </div>
-
-</span>
+    {% include 'product/main_body.html' %}
 
 {% endblock %}

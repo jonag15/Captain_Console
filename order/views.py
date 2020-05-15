@@ -56,9 +56,16 @@ def overview(request):
 
             return complete(request)
 
+
         else:
             print('overveiw else í POST')
             return render(request, 'order/overview.html')
+
+        # elif 'card_number' in request.POST:
+        #     print(12)
+        # elif 'first_name' in request.POST:
+        #     print(12)
+
     else:
         print('Overview else')
         return render(request, 'order/overview.html')
@@ -88,7 +95,7 @@ def complete(request):
                 ordered_products.order_id = order_id
                 ordered_products.save()
         print("product form")
-        products = [{'test1': 2, 'test2': 3}]
+        products = [{'order_id': order_id}]
         print('Er að fara return json response i complete')
         return JsonResponse({'data': products})
 
@@ -135,6 +142,7 @@ def customer_info(request):
         products = [{'test1': 2, 'test2': 3}]
         print('Er að fara return json response i complete')
         return JsonResponse({'data': products})
+
     else:
         print('Else í complete')
         return render(request, 'order/order_complete.html')
