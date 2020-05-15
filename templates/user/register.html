@@ -21,6 +21,14 @@
             <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-control">
             <small class="form-text text-muted">Lykiðorðið verður að vera amk 8 stafir, ekki of líkt notendanafninu þínu, ekki "þekkt" lykilorð og verður að innihalda bæði bókstafi og tölustafi. </small><br>
 
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
             <input type="submit" class="btn btn-primary" value="Nýskrá">
             <a class="btn btn-secondary" href="{% url 'login' %}" role="button">Innskráning</a>
 

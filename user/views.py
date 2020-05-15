@@ -5,6 +5,7 @@ from user.forms.personal_info import AddressInfo
 from user.forms.payment_info import PaymentInfo
 from user.models import UserImage
 from user.models import Card
+from user.models import Profile
 from user.models import Address
 from django.contrib import messages
 from user.models import Address
@@ -36,6 +37,10 @@ def register(request):
             form.save()
             messages.success(request, 'Nýskráning tókst!')
             return redirect('login')
+        else:
+            messages.info(request, 'Eitthvað fór útskeyðis. Annað hvort var lykilorðið of einfalt,'
+                                   ' eða þá að það var ekki ritað nákvæmlega eins í bæði skiptin.')
+            return render(request, 'user/register.html')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
     })
@@ -60,6 +65,12 @@ def picture(request):
 
 @login_required
 def profile(request):
+    findprofile = Profile.objects.filter(user_id=request.user.id).first()
+    if findprofile == None:
+        print("No profile found, making one..")
+        tempprofile = Profile()
+        tempprofile.user = request.user
+        tempprofile.save()
     findpicture = UserImage.objects.filter(user_id=request.user.id).first()
     if findpicture == None:
         findpicture = UserImage()

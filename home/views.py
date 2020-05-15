@@ -8,5 +8,7 @@ from django.http import JsonResponse
 def index(request):
     context = {'products': Product.objects.all()}
     if 'search_filter' in request.GET:
-        redirect('/product/', request.GET)
-    return render(request, 'home/index.html')
+        redirect('product_index', request)
+    return render(request, 'home/index.html', context)
+
+
