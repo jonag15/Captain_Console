@@ -21,8 +21,7 @@ def index(request):
             for prod in Product.objects.filter(name__icontains=search_filter):
                 form.product_id = prod.id
                 form.search_date = date.today()
-                temp = Profile.objects.filter(user=request.user).first()
-                form.profile_id = temp.user_id
+                form.profile = Profile.objects.filter(user=request.user).first()
                 form.save()
         product = [ {
             'id': x.id,
