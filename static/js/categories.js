@@ -5,7 +5,7 @@ $(document).ready(function() {
             var type_id = $(this).val();
             $.ajax( {
 
-                url: '/?type_filter=' + type_id,
+                url:  'product/?type_filter=' + type_id,
                 type: 'GET',
                 success: function (response) {
                     var newHtml = response.data.map(d => {
@@ -48,7 +48,7 @@ $(document).ready(function() {
             var url = window.location.href
             var type_id = $(this).val();
             $.ajax( {
-                url: '/?age_filter=' + type_id,
+                url: 'product/?age_filter=' + type_id,
                 type: 'GET',
                 success: function (response) {
                     var newHtml = response.data.map(d => {
