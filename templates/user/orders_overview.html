@@ -1,21 +1,61 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    <span class="col-md-9">
-        <div class="container justify-content-center align-items-center">
-            {% for product in products %}
-                <div class="row mb-4">
-                    <div class="col-4 themed-grid-col">{{ product.name }}</div>
-                    <div class="col-4 themed-grid-col">{{ product.price }}kr</div>
-                    <div class="col-4 themed-grid-col">
-                        <a class="btn btn-sm btn-info" style="width: 50%;display: grid;"
-                       href="{% url 'update_product' product.id %}" role="button">Breyta vöru</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
 
-        <a class="btn btn-secondary" href="{% url 'admin_option' %}" role="button">Til baka</a>
-    </span>
+    <h1 class="order_title">Pantana yfirlit</h1>
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Pöntunar númer</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Dagsetning</div>
+                  </th>
+                    <ul style="margin: 0px">
+                           <h6> Afhendingarmáti:</h6>
+                           <li>1. Sent</li>
+                            <li>2. Sækja í verlsun</li>
+                        </ul>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Afhendingarmáti</div>
+                  </th>
+                     <ul style="margin: 0px">
+                         <h6> Staða pöntunar: </h6>
+                        <li> 1. Í vinnslu </li>
+                        <li> 2. Sent </li>
+                        <li> 3. Móttekið </li>
+                        <li> 4. Hætt við </li>
+                      </ul>
+                  <th scope="col" class="border-0 bg-light">
+
+                    <div class="py-2 text-uppercase end_of_table">Staða pöntunar</div>
+                  </th>
+                </tr>
+            </thead>
+            <tbody class="order_products">
+                    {% for order in orders %}
+                        <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">{{ order.id }}</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">{{ order.order_date }}</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">{{ order.delivery_id }}</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light end_of_table_box">
+                    <div class="py-2 text-uppercase end_of_table">{{ order.order_status_id }}</div>
+                  </th>
+                </tr>
+
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 
 {% endblock %}

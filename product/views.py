@@ -47,7 +47,6 @@ def index_by_price(request):
 
 def info_index(request, id):
 
-
         return render(request, 'product/info.html', {
             'product': get_object_or_404(Product, pk=id),
             'category': get_object_or_404(ProductType, pk=id)
