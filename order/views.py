@@ -35,7 +35,6 @@ def index(request):
     return render(request, 'order/index.html')
 def payment(request):
     return render(request, 'order/payment.html')
-
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
     if request.method == 'POST':
@@ -54,17 +53,15 @@ def overview(request):
             } for x in Product.objects.filter(pk__in=order_list)]
             return JsonResponse({'data': products})
         elif 'product_form' in request.POST:
-
             return complete(request)
-
-        elif 'card_number' in request.POST:
-            print(12)
         elif 'first_name' in request.POST:
-            print(12)
+            return customer_info(request)
+        else:
+            print('overveiw else í POST')
+            return render(request, 'order/overview.html')
     else:
         print('Overview else')
         return render(request, 'order/overview.html')
-
 #@login_required
 def complete(request):
     if request.method == 'POST':
@@ -89,8 +86,29 @@ def complete(request):
                 ordered_products.quantity = value
                 ordered_products.order_id = order_id
                 ordered_products.save()
-        print("product form")
-        products = [{'order_id': order_id}]
+        id_for_order = [{'order_id': order_id}]
+        return JsonResponse({'data': id_for_order})
+    else:
+        print('Else í complete')
+        return render(request, 'order/order_complete.html')
+
+def customer_info(request):
+    if request.method == 'POST':
+        customer = Customer()
+        customer.order_id = request.POST['order_id']
+        customer.card_number = request.POST['card_number']
+        customer.valid_month = request.POST['valid_month']
+        customer.valid_year = request.POST['valid_year']
+        customer.cvc = request.POST['cvc']
+        customer.first_name = request.POST['first_name']
+        customer.last_name = request.POST['last_name']
+        customer.mail = request.POST['email']
+        customer.address = request.POST['address']
+        customer.zip_code = request.POST['zip_code']
+        customer.country = request.POST['country']
+        customer.save()
+        print("customer saved")
+        products = [{'test1': 2, 'test2': 3}]
         print('Er að fara return json response i complete')
         return JsonResponse({'data': products})
     else:

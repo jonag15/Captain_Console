@@ -38,6 +38,8 @@
         <form id="user_info" class="form form-horizontal" method="POST" action="{% url 'order_overview' %}">
             <input type="hidden" name="csrfmiddlewaretoken" value="kDXQgBArbCrZF8AOYHv8bLebKo3eYszvnMks3K8M02X7o1uxCeDwifHDFxyZlxFE">
 
+            <input type="hidden" id="order_id" name="order_id" value="'none'">
+
             <input type="text" name="first_name" class="readonly_form" maxlength="30" id="id_first_name_view" readonly>
 
             <input type="text" name="last_name" class="readonly_form" maxlength="150" id="id_last_name_view" readonly>

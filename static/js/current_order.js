@@ -249,17 +249,19 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	if (top.location.pathname === '/order/payment/overview') {
-        $("#id_first_name_view").val(localStorage.getItem('first_name'));
-		$("#id_last_name_view").val(localStorage.getItem('last_name'));
-		$("#id_email_view").val(localStorage.getItem('email'));
-		$("#id_address_view").val(localStorage.getItem('address'));
-		$("#id_zip_code_view").val(localStorage.getItem('zip_code'));
-		$("#id_country_view").val(localStorage.getItem('country'));
+		if (localStorage.getItem('first_name') != null) {
+			$("#id_first_name_view").val(localStorage.getItem('first_name'));
+			$("#id_last_name_view").val(localStorage.getItem('last_name'));
+			$("#id_email_view").val(localStorage.getItem('email'));
+			$("#id_address_view").val(localStorage.getItem('address'));
+			$("#id_zip_code_view").val(localStorage.getItem('zip_code'));
+			$("#id_country_view").val(localStorage.getItem('country'));
 
-		$("#id_card_number_view").val(localStorage.getItem('card_number'));
-		$("#id_valid_month_view").val(localStorage.getItem('valid_month'));
-		$("#id_valid_year_view").val(localStorage.getItem('valid_year'));
-		$("#id_cvc_view").val(localStorage.getItem('cvc'));
+			$("#id_card_number_view").val(localStorage.getItem('card_number'));
+			$("#id_valid_month_view").val(localStorage.getItem('valid_month'));
+			$("#id_valid_year_view").val(localStorage.getItem('valid_year'));
+			$("#id_cvc_view").val(localStorage.getItem('cvc'));
+		}
 		$("#total_price_num_view").val('Heildarverð: ' + localStorage.getItem('total_price') + ' kr');
 
 		var csrftoken = getCookie('csrftoken');
@@ -343,10 +345,9 @@ $(document).ready(function() {
 			ContentType: 'application/json',
 			data: {'product_form': JSON.stringify(product_form)},
 			success: function (response) {
-				var  test = response.data.map(d => {
-					console.log(d['order_id'])
+				response.data.map(d => {
+					send_user_info(d['order_id'])
 				})
-				send_user_info()
 				/*var url = window.location.href
 				console.log(url + '/complete')
 				window.location.assign(url + '/complete')*/
@@ -358,7 +359,7 @@ $(document).ready(function() {
 	});
 });
 
-function send_user_info() {
-	var user_info = document.getElementById("user_info");
-	console.log(user_info)
+function send_user_info(order_id) {
+	$('#order_id').val(order_id)
+	document.getElementById("user_info").submit();
 }
