@@ -28,8 +28,6 @@ def search_history(request):
 def admin_option(request):
     return render(request, 'user/admin_view.html')
 
-
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
@@ -93,10 +91,12 @@ def profile(request):
             postform.save()
             addressform = AddressInfo(instance=address, data=request.POST)
             if addressform.is_valid():
-                print(address.id)
                 address.save()
-                messages.success(request, 'Form submission successful')
+                messages.success(request, 'Nýjar upplýsingar vistaðar')
+            else:
+                messages.error(request, 'Ekki gékk að vista heimilisfangs upplýsingar, vinsamlegast reyndu aftur.')
             return redirect('/user/profile')
+        messages.error(request, 'Ekki gékk að vista upplýsingar, vinsamlegast reyndu aftur.')
     return render(request, 'user/profile.html', {
         'form': PersonalInfo(instance=postform),
         'address': AddressInfo(instance=address)
@@ -104,7 +104,7 @@ def profile(request):
 
 @login_required
 def change_payment(request):
-    paymentInfo = Card.objects.filter(id=request.user.id).first()
+    paymentInfo = Card.objects.filter(user=request.user).first()
     if paymentInfo == None:
         paymentInfo = Card()
         paymentInfo.user = request.user
