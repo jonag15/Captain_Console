@@ -99,5 +99,8 @@ def complete(request):
             ordered_products.order_id = order_id
             ordered_products.save()
     print("product form")
-    return render(request, 'order/order_complete.html')
+    products = [{'test1': 2, 'test2': 3}]
+
+    return JsonResponse({'data': products})
+    #return redirect('order_complete')
 
