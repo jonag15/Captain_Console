@@ -54,25 +54,31 @@ def overview(request):
         } for x in Product.objects.filter(pk__in=order_list)]
         return JsonResponse({'data': products})
     elif 'product_form' in request.POST:
-        #order_json = json.loads(request.POST['product_form'])
-        for item in 'product_form':
-            if item[0] == 'total_price':
-                order.total_price = item[1]
-            elif item[0] != 'NaN':
-                order = Order()
-                order.order_status = None
+        order_json = json.loads(request.POST['product_form'])
+        #for item in 'product_form':
+        order = Order()
+        for key, value in order_json.items():
+            if key == 'total_price':
+                order.total_price = value
+            #if item[0] == 'total_price':
+                #order.total_price = item[1]
+            #elif item[0] != 'NaN':
+
+                order.order_status_id = 1
                 order.order_date = date.today()
-                order.delivery = None
+                order.delivery_id = 1
                 if order.is_valid():
                     order.save()
         order_id = order.id
         ordered_products = OrderedProducts()
         #products ={}
-        for item in 'product_form':
-            ordered_products.product = item[0]
-            ordered_products.quantity = item[1]
-            ordered_products.order = order_id
-            ordered_products.save()
+        for key, value in order_json.items():
+            if key != 'NaN' and value != 'NaN' and key != 'total_price':
+        #for item in 'product_form':
+                ordered_products.product = key
+                ordered_products.quantity = value
+                ordered_products.order = order_id
+                ordered_products.save()
             #products[key] = value
         #products = [{'test1': 2, 'test2': 3}]
         #return JsonResponse({'data': order_json})
