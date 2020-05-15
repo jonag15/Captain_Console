@@ -4,6 +4,8 @@ from product.forms.product_form import ProductCreateForm, ProductUpdateForm
 from product.models import Product, ProductType, ProductSubTypes, ProductAgeLimit
 from product.models import ProductImage
 from product.models import SearchHistory
+from user.models import Profile
+from django.contrib.auth.models import User
 from datetime import date
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -19,7 +21,8 @@ def index(request):
             for prod in Product.objects.filter(name__icontains=search_filter):
                 form.product_id = prod.id
                 form.search_date = date.today()
-                form.profile_id = request.user.id
+                temp = Profile.objects.filter(user=request.user).first()
+                form.profile_id = temp.user_id
                 form.save()
         product = [ {
             'id': x.id,

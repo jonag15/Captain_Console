@@ -5,6 +5,7 @@ from user.forms.personal_info import AddressInfo
 from user.forms.payment_info import PaymentInfo
 from user.models import UserImage
 from user.models import Card
+from user.models import Profile
 from user.models import Address
 from django.contrib import messages
 from user.models import Address
@@ -27,8 +28,6 @@ def search_history(request):
 def admin_option(request):
     return render(request, 'user/admin_view.html')
 
-
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
@@ -36,6 +35,10 @@ def register(request):
             form.save()
             messages.success(request, 'Nýskráning tókst!')
             return redirect('login')
+        else:
+            messages.info(request, 'Eitthvað fór útskeyðis. Annað hvort var lykilorðið of einfalt,'
+                                   ' eða þá að það var ekki ritað nákvæmlega eins í bæði skiptin.')
+            return render(request, 'user/register.html')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
     })
@@ -60,6 +63,12 @@ def picture(request):
 
 @login_required
 def profile(request):
+    findprofile = Profile.objects.filter(user_id=request.user.id).first()
+    if findprofile == None:
+        print("No profile found, making one..")
+        tempprofile = Profile()
+        tempprofile.user = request.user
+        tempprofile.save()
     findpicture = UserImage.objects.filter(user_id=request.user.id).first()
     if findpicture == None:
         findpicture = UserImage()
@@ -82,10 +91,12 @@ def profile(request):
             postform.save()
             addressform = AddressInfo(instance=address, data=request.POST)
             if addressform.is_valid():
-                print(address.id)
                 address.save()
-                messages.success(request, 'Form submission successful')
+                messages.success(request, 'Nýjar upplýsingar vistaðar')
+            else:
+                messages.error(request, 'Ekki gékk að vista heimilisfangs upplýsingar, vinsamlegast reyndu aftur.')
             return redirect('/user/profile')
+        messages.error(request, 'Ekki gékk að vista upplýsingar, vinsamlegast reyndu aftur.')
     return render(request, 'user/profile.html', {
         'form': PersonalInfo(instance=postform),
         'address': AddressInfo(instance=address)
@@ -93,7 +104,7 @@ def profile(request):
 
 @login_required
 def change_payment(request):
-    paymentInfo = Card.objects.filter(id=request.user.id).first()
+    paymentInfo = Card.objects.filter(user=request.user).first()
     if paymentInfo == None:
         paymentInfo = Card()
         paymentInfo.user = request.user

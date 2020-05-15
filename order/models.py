@@ -20,7 +20,7 @@ class DeliveryType(models.Model):
 
 class Order(models.Model):
     order_status = models.ForeignKey(OrderStatus, on_delete=models.PROTECT)
-    order_date = models.DateField()
+    order_date = models.DateField(blank=True)
     total_price = models.IntegerField()
     delivery = models.ForeignKey(DeliveryType, on_delete=models.PROTECT, blank=True)
 
