@@ -13,5 +13,7 @@ Server: 	balarama.db.elephantsql.com
 
 Gögn í gagnagrunni: Ýmis texti og myndir fengnar að láni á Internetinu.
 
+Error: cap_console/settings.py skrá: DEBUG = False, ALLOWED_HOSTS = ['*']
+
 Greiðsluupplýsingar: Þróun á ferlinu fyrir greiðslur í kerfinu er á byrjunarstigi og þarf að setja inn öruggara greiðsluferli í gegnum greiðslugátt frekar en að setja upplýsingarnar í gagnagrunn eins og nú er gert.
 
