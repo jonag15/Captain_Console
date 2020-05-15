@@ -6,6 +6,12 @@ Elín Hrund Búadóttir
 Jón Ágúst Guðmundsson
 Unnar Sigurðsson
 
-Database: Ýmis texti og myndir fengnar að láni á Internetinu.
+Slóð á verkefni á github: https://github.com/jonag15/Captain_Console
+
+Gagnagrunnur: Elephantsql
+Server: 	balarama.db.elephantsql.com
+
+Gögn í gagnagrunni: Ýmis texti og myndir fengnar að láni á Internetinu.
+
 Greiðsluupplýsingar: Þróun á ferlinu fyrir greiðslur í kerfinu er á byrjunarstigi og þarf að setja inn öruggara greiðsluferli í gegnum greiðslugátt frekar en að setja upplýsingarnar í gagnagrunn eins og nú er gert.
 
