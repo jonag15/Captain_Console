@@ -15,6 +15,13 @@
 
       <div class="col-lg-4">
         <h4>Persónuupplýsingar</h4><br>
+          {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
         <form class="form form-horizontal" method="POST">
             {% csrf_token %}
             {{ form.first_name }}
