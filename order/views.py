@@ -39,6 +39,29 @@ def payment(request):
 
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
+#    if 'orderList' in request.POST:
+#        order_list = []
+#        order_json = json.loads(request.POST['orderList'])
+#        for id in order_json['paramName']:
+#            if id != None:
+#                order_list.append(id)
+#        products = [{
+#            'id': x.id,
+#            'name': x.name,
+#            'price': x.price,
+#        } for x in Product.objects.filter(pk__in=order_list)]
+#        return JsonResponse({'data': products})
+#    elif 'product_form' in request.POST:
+#        products = {}
+#        order_json = json.loads(request.POST['product_form'])
+#        for key, value in order_json.items():
+#            products[key] = value
+#        #products = [{'test1': 2, 'test2': 3}]
+#        return JsonResponse({'data': order_json})
+#    elif request.method == 'POST':
+#        return "placeholder"
+#    return render(request, 'order/overview.html')
+
     if request.method == 'POST':
         #print("Byrja")
         if 'orderList' in request.POST:
@@ -57,6 +80,7 @@ def overview(request):
         elif 'product_form' in request.POST:
             #return render(complete(request), 'order/order_complete.html')
             return complete(request)
+
 
             #return redirect('order_complete')
             #return render(request, 'order/order_complete.html')

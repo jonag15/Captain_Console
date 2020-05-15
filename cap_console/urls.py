@@ -24,3 +24,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
 
 ]
+
+#handler404 = 'home.views.FourError'
+#handler505 = 'home.views.FiveError'
+

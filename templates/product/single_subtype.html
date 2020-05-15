@@ -1,0 +1,12 @@
+
+{% load static %}
+{% block content %}
+
+    <div class="form-check">
+        <label class="form-check-label">
+            <input id="sub_type_{{ sub_type.id }}" value={{ sub_type.id }} type="radio" class="form-check-input category_select" name="optradio">{{ sub_type.name }}
+        </label>
+    </div>
+
+{% endblock %}
+

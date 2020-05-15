@@ -37,7 +37,7 @@
     max-width: 100%;
     margin-bottom: 20px;
 }
-
+catacories
 .col_around_total {
     text-align: right;
 }
@@ -225,6 +225,15 @@ footer {
     display: inline-block;
 }
 
+.age_type {
+    margin-top: 10px;
+}
+
+.all_product_btn {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 .card  {
     /*Card er upplýsingar um vöru á upplýsingasíðu um vöru*/
     margin: 1rem;
@@ -233,7 +242,6 @@ footer {
 
 .sortedBy {
     padding: 8px;
-    margin-left: 20%;
 }
 
 #dropdownMenuButton {
