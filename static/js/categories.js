@@ -4,7 +4,8 @@ $(document).ready(function() {
             var url = window.location.href
             var type_id = $(this).val();
             $.ajax( {
-                url: url + '?type_filter=' + type_id,
+
+                url: '/?type_filter=' + type_id,
                 type: 'GET',
                 success: function (response) {
                     var newHtml = response.data.map(d => {
@@ -24,7 +25,7 @@ $(document).ready(function() {
                                                     onclick="AddItem(${d.id})">Setja í körfu
                                             </button>
                                             <a class="btn btn-primary btn-sm btn-outline-secondary btn-info"
-                                               href="{% url 'product_description' product.id %}" role="button">Upplýsingar</a>
+                                               href="{% url 'product_info' product.id %}" role="button">Upplýsingar</a>
                                         </div>
                                   </div>
                                 </div>
@@ -47,7 +48,7 @@ $(document).ready(function() {
             var url = window.location.href
             var type_id = $(this).val();
             $.ajax( {
-                url: url + '?age_filter=' + type_id,
+                url: '/?age_filter=' + type_id,
                 type: 'GET',
                 success: function (response) {
                     var newHtml = response.data.map(d => {
@@ -67,7 +68,7 @@ $(document).ready(function() {
                                                     onclick="AddItem(${d.id})">Setja í körfu
                                             </button>
                                             <a class="btn btn-primary btn-sm btn-outline-secondary btn-info"
-                                               href="{% url 'product_description' product.id %}" role="button">Upplýsingar</a>
+                                               href="{% url 'product_info' product.id %}" role="button">Upplýsingar</a>
                                         </div>
                                   </div>
                                 </div>
