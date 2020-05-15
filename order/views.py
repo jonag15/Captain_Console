@@ -17,7 +17,6 @@ from order.models import OrderStatus, DeliveryType
 from product.models import Product
 from order.models import Order, OrderedProducts
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
-
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -39,29 +38,6 @@ def payment(request):
 
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
-#    if 'orderList' in request.POST:
-#        order_list = []
-#        order_json = json.loads(request.POST['orderList'])
-#        for id in order_json['paramName']:
-#            if id != None:
-#                order_list.append(id)
-#        products = [{
-#            'id': x.id,
-#            'name': x.name,
-#            'price': x.price,
-#        } for x in Product.objects.filter(pk__in=order_list)]
-#        return JsonResponse({'data': products})
-#    elif 'product_form' in request.POST:
-#        products = {}
-#        order_json = json.loads(request.POST['product_form'])
-#        for key, value in order_json.items():
-#            products[key] = value
-#        #products = [{'test1': 2, 'test2': 3}]
-#        return JsonResponse({'data': order_json})
-#    elif request.method == 'POST':
-#        return "placeholder"
-#    return render(request, 'order/overview.html')
-
     if request.method == 'POST':
         #print("Byrja")
         if 'orderList' in request.POST:
@@ -78,27 +54,13 @@ def overview(request):
             } for x in Product.objects.filter(pk__in=order_list)]
             return JsonResponse({'data': products})
         elif 'product_form' in request.POST:
-            #return render(complete(request), 'order/order_complete.html')
+
             return complete(request)
 
-
-            #return redirect('order_complete')
-            #return render(request, 'order/order_complete.html')
-
-            #return redirect('order_complete')
-            #return render(request, 'product/order_complete.html', {})
-            # products = [{'test1': 2, 'test2': 3}]
-            #
-            # return JsonResponse({'data': products})
-            #return render(request, 'order/order_complete.html') #, {
-            #     'form': order,
-            #     'form_product': ordered_products
-            # })
-        # elif request.method == 'POST':
-        #     return render(request, 'product/index.html')
-        else:
-            print('overveiw else í POST')
-            return render(request, 'order/overview.html')
+        elif 'card_number' in request.POST:
+            print(12)
+        elif 'first_name' in request.POST:
+            print(12)
     else:
         print('Overview else')
         return render(request, 'order/overview.html')
@@ -128,11 +90,9 @@ def complete(request):
                 ordered_products.order_id = order_id
                 ordered_products.save()
         print("product form")
-        products = [{'test1': 2, 'test2': 3}]
+        products = [{'order_id': order_id}]
         print('Er að fara return json response i complete')
         return JsonResponse({'data': products})
-        #return request
-        #return redirect('order_complete')
     else:
         print('Else í complete')
         return render(request, 'order/order_complete.html')

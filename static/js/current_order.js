@@ -151,10 +151,19 @@ function RemoveItem(product_id) {
 }
 
 $(document).ready(function() {
-	if (top.location.pathname === '/order/payment/complete') {
+	if (top.location.pathname === '/order/payment/overview/complete') {
 		localStorage.clear()
 	}
 });
+
+$(document).ready(function() {
+    $('#cancel_btn').on( 'click',  function() {
+    	console.log("cancel")
+    	localStorage.clear();
+    });
+});
+
+
 
 
 $(document).ready(function() {
@@ -280,7 +289,6 @@ $(document).ready(function() {
 			success: function (response) {
 				var newHtml = response.data.map(d => {
 					var count = localStorage.getItem((d.id).toString())
-					var total_price = d.price * count
 					return   `<tr>
 							  <th scope="row">
 								<div class="p-2">
@@ -305,16 +313,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#order_confirmed').on('click', function () {
 		console.log("clicked")
-		document.getElementById("user_info").submit();
-		document.getElementById("card_info").submit();
 		var csrftoken = getCookie('csrftoken');
 		var product_form = {};
 		var i = 0;
 		var id;
 		for (i = 0; i <= localStorage.length - 1; i++) {
 			if (localStorage.key(i) === 'total_price') {
-				console.log(localStorage.key(i))
-				console.log(parseInt(localStorage.getItem(localStorage.key(i))))
 				product_form[localStorage.key(i)] = parseInt(localStorage.getItem(localStorage.key(i)))
 			}
 			else if (parseInt(localStorage.key(i)) !== NaN) {
@@ -339,9 +343,13 @@ $(document).ready(function() {
 			ContentType: 'application/json',
 			data: {'product_form': JSON.stringify(product_form)},
 			success: function (response) {
-				var url = window.location.href
+				var  test = response.data.map(d => {
+					console.log(d['order_id'])
+				})
+				send_user_info()
+				/*var url = window.location.href
 				console.log(url + '/complete')
-				window.location.assign(url + '/complete')
+				window.location.assign(url + '/complete')*/
 			},
 			error: function (xhr, status, error) {
 				// TODO: error message
@@ -349,3 +357,8 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function send_user_info() {
+	var user_info = document.getElementById("user_info");
+	console.log(user_info)
+}

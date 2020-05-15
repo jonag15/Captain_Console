@@ -36,6 +36,7 @@
       <div class="col-lg-3">
       <h4>Upplýsingar</h4><br>
         <form id="user_info" class="form form-horizontal" method="POST" action="{% url 'order_overview' %}">
+            <input type="hidden" name="csrfmiddlewaretoken" value="kDXQgBArbCrZF8AOYHv8bLebKo3eYszvnMks3K8M02X7o1uxCeDwifHDFxyZlxFE">
 
             <input type="text" name="first_name" class="readonly_form" maxlength="30" id="id_first_name_view" readonly>
 
@@ -48,16 +49,11 @@
             <input type="text" name="zip_code" class="readonly_form" required="" id="id_zip_code_view" readonly>
 
             <input type="text" name="country" class="readonly_form" required="" id="id_country_view" readonly>
-
-        </form>
-
       </div>
 
 
       <div class="col-lg-4">
         <h4>Greiðsluupplýsingar</h4><br>
-        <form id="card_info" class="form form-horizontal" method="POST" action="{% url 'order_overview' %}">
-            <input type="hidden" name="csrfmiddlewaretoken" value="kDXQgBArbCrZF8AOYHv8bLebKo3eYszvnMks3K8M02X7o1uxCeDwifHDFxyZlxFE">
 
             <input type="text" name="card_number" class="readonly_form" maxlength="19" required="" id="id_card_number_view" readonly>
 
