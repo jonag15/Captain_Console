@@ -10,6 +10,8 @@ from user.models import Address
 from django.contrib import messages
 from user.models import Address
 from product.models import SearchHistory
+from django.shortcuts import render, get_object_or_404
+from order.models import Order, OrderedProducts
 
 from user.forms.profile_form import ProfileForm
 from django.contrib.auth.models import User
@@ -134,3 +136,12 @@ def login(request):
     return render(request, 'user/login.html', {})
 
 
+def get_orders_to_choose_from(request):
+    context = {'orders': Order.objects.all()}
+    return render(request, 'user/orders_overview.html', context)
+
+def get_order_by_id(request, id):
+   context = {'orders': Order.objects.all()}
+   return render(request, 'user/orders_overview.html',  {
+       'orders': get_object_or_404(Order, pk=id)
+   })

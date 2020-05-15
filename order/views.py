@@ -35,7 +35,6 @@ def index(request):
     return render(request, 'order/index.html')
 def payment(request):
     return render(request, 'order/payment.html')
-
 @csrf_exempt        #Setti þetta inn vegna csrf villu
 def overview(request):
     if request.method == 'POST':
@@ -57,10 +56,16 @@ def overview(request):
 
             return complete(request)
 
-        elif 'card_number' in request.POST:
-            print(12)
-        elif 'first_name' in request.POST:
-            print(12)
+
+        else:
+            print('overveiw else í POST')
+            return render(request, 'order/overview.html')
+
+        # elif 'card_number' in request.POST:
+        #     print(12)
+        # elif 'first_name' in request.POST:
+        #     print(12)
+
     else:
         print('Overview else')
         return render(request, 'order/overview.html')
@@ -93,6 +98,51 @@ def complete(request):
         products = [{'order_id': order_id}]
         print('Er að fara return json response i complete')
         return JsonResponse({'data': products})
+
+    else:
+        print('Else í complete')
+        return render(request, 'order/order_complete.html')
+
+
+def customer_info(request):
+    if request.method == 'POST':
+        order_json_card = json.loads(request.POST['card_info'])
+        customer = Customer()
+        for key, value in order_json_card.items():
+            if key == 'card_numer':
+                customer.card_number = value
+                print("card number")
+            if key == 'valid_month':
+                customer.valid_month = value
+                print('month')
+            if key == 'valid_year':
+                customer.valid_year = value
+                print('year')
+            if key == 'cvc':
+                customer.cvc = value
+
+        order_json_info = json.loads(request.POST['user_info'])
+        print("user info form byrjun")
+
+        for key, value in order_json_info.items():
+            if key == 'first_name':
+                customer.first_name = value
+            if key == 'last_name':
+                customer.last_name = value
+            if key == 'email':
+                customer.mail = value
+            if key == 'address':
+                customer.address = value
+            if key == 'zip_code':
+                customer.zip_code = value
+            if key == 'country':
+                customer.country = value
+        customer.save()
+        print("customer saved")
+        products = [{'test1': 2, 'test2': 3}]
+        print('Er að fara return json response i complete')
+        return JsonResponse({'data': products})
+
     else:
         print('Else í complete')
         return render(request, 'order/order_complete.html')

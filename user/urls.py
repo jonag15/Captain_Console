@@ -11,5 +11,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='user/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('/view_orders/', views.get_orders_to_choose_from, name='view_all_orders'),
+    path('/view_orders/<int:id>', views.get_order_by_id, name='order_by_id')
 ]
 

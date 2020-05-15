@@ -22,7 +22,7 @@ class PersonalInfoOrder(ModelForm):
 class PaymentInfo(ModelForm):
     class Meta:
         model = Card
-        exclude = []
+        exclude = ['id']
         widgets = {
             'card_number': widgets.TextInput(attrs={'class': 'form-control', 'label':'blabla'}),
             'valid_month': widgets.NumberInput(attrs={'class': 'form-control'}),
@@ -39,6 +39,4 @@ def CreateOrder(request):
             'product': widgets.TextInput(attrs={'class': 'Product'}),
             'quantity': widgets.NumberInput(attrs={'class': 'form-control'}),
             'order' : widgets.NumberInput(attrs={'class': 'Order'})
-
-
         }

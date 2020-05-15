@@ -24,6 +24,11 @@ class Order(models.Model):
     total_price = models.IntegerField()
     delivery = models.ForeignKey(DeliveryType, on_delete=models.PROTECT, blank=True)
 
+    def __str__(self):
+        return self.order_status
+
+    def __str__(self):
+        return self.delivery
 
 class OrderedProducts(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -32,6 +37,7 @@ class OrderedProducts(models.Model):
 
     def __str__(self):
         return self.product
+
 
 # auth_user/user er user sem er með aðgang að kerfinu og getur skráð sig inn.
 class AllUserOrders (models.Model):

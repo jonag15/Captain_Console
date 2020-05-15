@@ -575,9 +575,4 @@ def get_products_to_choose_from(request):
 
 
 
-# def get_subcategory_games(request, id):
-#    product = Product.objects.all()
-#    subcategories = ProductSubTypes.objects.all()
-#    return render(request, 'product/games.html', {'subcategories': subcategories,
-#                                                  'products': product})
 
